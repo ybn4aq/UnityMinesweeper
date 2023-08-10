@@ -27,7 +27,7 @@ public class TileScript : MonoBehaviour
 
     void HandleSingleLeftClick()
     {
-        Debug.Log("Left click!");
+        Debug.Log("Single left click!");
     }
 
     void HandleRightClick()
@@ -37,6 +37,6 @@ public class TileScript : MonoBehaviour
 
     void HandleDoubleLeftClick()
     {
-
+        Debug.Log("Double left click!");
     }
 }
