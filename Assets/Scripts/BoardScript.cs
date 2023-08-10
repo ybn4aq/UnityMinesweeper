@@ -9,19 +9,21 @@ public class BoardScript : MonoBehaviour
     public int rows; // m, height
     public int cols; // n, height
     public int numMines;
-    // Start is called before the first frame update
+    public HashSet<(int, int)> mineCoords;
+  
     void Start()
     {
-
+        mineCoords = GetMineCoords();
+        // PrintList<(int, int)>(mineCoords);
+        GenerateBoard();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    List<(int, int)> getMineCoords()
+    HashSet<(int, int)> GetMineCoords() // This works
     {
         System.Random ran = new System.Random();
         int rRow;
@@ -36,6 +38,40 @@ public class BoardScript : MonoBehaviour
                 cache.Add((rRow, rCol));
             }
         }
-        return new List<(int, int)>(cache);
+        return cache;
+    }
+
+    void PrintList<T>(List<T> arr) // TODO: update for hashset
+    {
+        for (int i = 0; i < arr.Count; i++)
+        {
+            Debug.Log(arr[i]);
+        }
+    }
+
+    void GenerateBoard()
+    {
+        (int, int) cur;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                cur = (i, j);
+                if (mineCoords.Contains(cur))
+                {
+                    board[i, j] = new Mine();
+                }
+                else
+                {
+                    board[i, j] = new Blank();
+                }
+            }
+        }
+    }
+
+
+    void PopulateAdjTiles()
+    {
+        // TODO: go through board and make each Blank have the correct amount of adj tiles
     }
 }
