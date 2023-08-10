@@ -15,11 +15,11 @@ public class TileScript : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // check for single left click
-        if (Input.GetMouseButton(0) && collide.OverlapPoint(mousePosition)) 
+        if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition)) 
         {
             HandleSingleLeftClick();
         }
-        else if (Input.GetMouseButton(1) && collide.OverlapPoint(mousePosition))
+        else if (Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition))
         {
             HandleRightClick();
         }
@@ -38,10 +38,5 @@ public class TileScript : MonoBehaviour
     void HandleDoubleLeftClick()
     {
 
-    }
-
-    void OnMouseDown()
-    {
-        Debug.Log("Tile clicked");
     }
 }
