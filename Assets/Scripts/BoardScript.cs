@@ -72,6 +72,14 @@ public class BoardScript : MonoBehaviour
 
     void PopulateAdjTiles()
     {
+        Tile cur;
         // TODO: go through board and make each Blank have the correct amount of adj tiles
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                cur = board[i, j];
+            }
+        }
     }
 }
