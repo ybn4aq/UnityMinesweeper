@@ -6,9 +6,11 @@ public class TileScript : MonoBehaviour
 {
     public SpriteRenderer sprite;
     public BoxCollider2D collide;
+    public Sprite[] spriteArray;
+    public Tile AssociatedTile { get; set; }
     void Start()
     {
-        
+        spriteArray = Resources.LoadAll<Sprite>("TileSprites");
     }
     void Update()
     {

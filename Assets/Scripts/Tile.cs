@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile
 {
+    TileScript tileScript;
     private bool isMined { get; set; }
     public int adjMines { get; set; }
 

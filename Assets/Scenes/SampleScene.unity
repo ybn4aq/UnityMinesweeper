@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cbaba1f75590b46b49e4ab3732334b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  cols: 10
-  numMines: 10
+  rows: 4
+  cols: 4
+  numMines: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +362,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 726649969}
   collide: {fileID: 726649971}
+  spriteArray:
+  - {fileID: 21300000, guid: 98623ab8a4447fc49a075d4e4487083d, type: 3}
+  - {fileID: 21300000, guid: 13346ff9029c7c64a8dd0ecd239a8c47, type: 3}
+  - {fileID: 21300000, guid: 5f8276cb9a2e87542b34f7388a512b6d, type: 3}
+  - {fileID: 21300000, guid: ffd18c68e44eef349ab907a12a4276d7, type: 3}
+  - {fileID: 21300000, guid: 4e1aad4b1006ad242b457036f3c1f6bd, type: 3}
+  - {fileID: 21300000, guid: 7c6072ae02f61e347bddc0ada20eff3d, type: 3}
+  - {fileID: 21300000, guid: d31b674cf3c6d4a479361ac7ee0b93cc, type: 3}
+  - {fileID: 21300000, guid: 093ff8d51be5a304a9d41c3d9995203f, type: 3}
+  - {fileID: 21300000, guid: 161cb44d4764e0946a91c434f2f07449, type: 3}
+  - {fileID: 21300000, guid: 2ed1e1b9632951645b68f7d2a824bb4d, type: 3}
+  - {fileID: 21300000, guid: ec3ff125eb1fb884b83fe7879d339d47, type: 3}
+  - {fileID: 21300000, guid: c328b857583f5d140b06d52dbb3e2405, type: 3}
+  - {fileID: 21300000, guid: 1f7b5d60cd9c9844b8ca403ed0fb3fce, type: 3}
+  - {fileID: 21300000, guid: 1dd9384c6ee4c9e4684e45e051edc773, type: 3}
 --- !u!61 &726649971
 BoxCollider2D:
   m_ObjectHideFlags: 0
