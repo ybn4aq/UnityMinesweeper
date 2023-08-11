@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tile
 {
     private bool isMined { get; set; }
-    public int adjMines;
+    public int adjMines { get; set; }
 
     public virtual void Dig()
     {
@@ -34,8 +34,6 @@ public class Mine : Tile
 
 public class Blank : Tile
 {
-    public int adjMines { get; set; }
-
     public override void Dig()
     {
         base.Dig();

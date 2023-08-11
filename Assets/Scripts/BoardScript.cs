@@ -16,7 +16,7 @@ public class BoardScript : MonoBehaviour
         mineCoords = GetMineCoords();
         GenerateBoard();
         PopulateAdjTiles();
-        // PrintBoard();
+        PrintBoard();
     }
 
     void Update()
@@ -58,6 +58,7 @@ public class BoardScript : MonoBehaviour
                 else
                 {
                     board[i, j] = new Blank();
+                    ((Blank)board[i, j]).adjMines = 0;
                 }
             }
         }
@@ -83,7 +84,6 @@ public class BoardScript : MonoBehaviour
                     if (adjTiles[k] is Mine)
                     {
                         cur.IncrementAdjMines();
-                        Debug.Log(cur.adjMines);
                     }
                 }
             }
