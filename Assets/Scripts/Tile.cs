@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile
 {
     private bool isMined { get; set; }
+    public int adjMines;
 
     public virtual void Dig()
     {
@@ -14,6 +15,11 @@ public class Tile
     public Tile()
     {
         isMined = false;
+    }
+
+    public virtual void IncrementAdjMines()
+    {
+
     }
 }
 
@@ -39,5 +45,10 @@ public class Blank : Tile
     public Blank()
     {
         adjMines = 0;
+    }
+    
+    public override void IncrementAdjMines()
+    {
+        adjMines++;
     }
 }
