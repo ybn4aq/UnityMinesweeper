@@ -34,7 +34,7 @@ public class Mine : Tile
 
 public class Blank : Tile
 {
-    private int adjMines { get; set; }
+    public int adjMines { get; set; }
 
     public override void Dig()
     {

@@ -14,10 +14,9 @@ public class BoardScript : MonoBehaviour
     void Start()
     {
         mineCoords = GetMineCoords();
-        // PrintList<(int, int)>(mineCoords);
         GenerateBoard();
         PopulateAdjTiles();
-        PrintBoard();
+        // PrintBoard();
     }
 
     void Update()
@@ -43,16 +42,9 @@ public class BoardScript : MonoBehaviour
         return cache;
     }
 
-    private void PrintList<T>(List<T> arr) // TODO: update for hashset
-    {
-        for (int i = 0; i < arr.Count; i++)
-        {
-            Debug.Log(arr[i]);
-        }
-    }
-
     private void GenerateBoard()
     {
+        board = new Tile[rows, cols];
         (int, int) cur;
         for (int i = 0; i < rows; i++)
         {
@@ -76,7 +68,6 @@ public class BoardScript : MonoBehaviour
     {
         Tile cur;
         List<Tile> adjTiles;
-        // TODO: go through board and make each Blank have the correct amount of adj tiles
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
@@ -92,6 +83,7 @@ public class BoardScript : MonoBehaviour
                     if (adjTiles[k] is Mine)
                     {
                         cur.IncrementAdjMines();
+                        Debug.Log(cur.adjMines);
                     }
                 }
             }
