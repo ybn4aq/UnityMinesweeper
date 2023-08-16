@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class BoardScript : MonoBehaviour
 {
+    public GameObject tilePrefab;
     public Tile[,] board; // m x n
     public int rows; // m, height
     public int cols; // n, height
@@ -44,20 +46,23 @@ public class BoardScript : MonoBehaviour
 
     private void GenerateBoard()
     {
+        Vector3 position;
         board = new Tile[rows, cols];
         (int, int) cur;
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
+                position = new Vector3(rows, 0, cols);
                 cur = (i, j);
-                if (mineCoords.Contains(cur))
+                bool isMine = mineCoords.Contains(cur);
+                GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
+                TileScript tileScript = tileObject.GetComponent<TileScript>();
+                if (tileScript != null)
                 {
-                    board[i, j] = new Tile(true); 
-                }
-                else
-                {
-                    board[i, j] = new Tile(false);
+                    Tile associatedTile = new Tile(isMine);
+                    board[i,j] = associatedTile;
+                    tileScript.AssociatedTile = associatedTile;
                 }
             }
         }
