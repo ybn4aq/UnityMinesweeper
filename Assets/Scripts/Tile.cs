@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Tile
 {
-    public bool isDug { get; set; }
-    public bool isMine { get; set; }
-    public int adjMines { get; set; }
+    public bool IsDug { get; set; }
+    public bool IsMine { get; set; }
+    public int AdjMines { get; set; }
 
     public virtual void Dig()
     {
@@ -16,12 +16,12 @@ public class Tile
 
     public Tile(bool isMine)
     {
-        this.isMine = isMine;
-        adjMines = 0;
+        IsMine = isMine;
+        AdjMines = 0;
     }
 
     public virtual void IncrementAdjMines()
     {
-        adjMines++;
+        AdjMines++;
     }
 }

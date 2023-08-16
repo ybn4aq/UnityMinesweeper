@@ -73,14 +73,14 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 cur = board[i, j];
-                if (cur.isMine)
+                if (cur.IsMine)
                 {
                     continue;
                 }
                 adjTiles = GetAdjTiles(i, j);
                 for (int k = 0; k < adjTiles.Count; k++)
                 {
-                    if (adjTiles[k].isMine)
+                    if (adjTiles[k].IsMine)
                     {
                         cur.IncrementAdjMines();
                     }
@@ -139,13 +139,13 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 cur = board[i,j];
-                if (cur.isMine)
+                if (cur.IsMine)
                 {
                     Debug.Log("Mine");
                 }
                 else
                 {
-                    Debug.Log(cur.adjMines);
+                    Debug.Log(cur.AdjMines);
                 }
             }
         }
