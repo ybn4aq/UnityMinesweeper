@@ -63,7 +63,6 @@ public class BoardScript : MonoBehaviour
         }
     }
 
-
     private void PopulateAdjTiles()
     {
         Tile cur;
@@ -88,7 +87,6 @@ public class BoardScript : MonoBehaviour
             }
         }
     }
-
 
     private List<Tile> GetAdjTiles(int row, int col)
     {
