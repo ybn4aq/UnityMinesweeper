@@ -11,6 +11,8 @@ public class BoardScript : MonoBehaviour
     public int rows; // m, height
     public int cols; // n, height
     public int numMines;
+    private float curX;
+    private float curY;
     public HashSet<(int, int)> mineCoords;
   
     void Start()
@@ -19,6 +21,8 @@ public class BoardScript : MonoBehaviour
         GenerateBoard();
         PopulateAdjTiles();
         PrintBoard();
+        curX = (float) -1.5;
+        curY = (float) 3.5;
     }
 
     void Update()
@@ -51,9 +55,10 @@ public class BoardScript : MonoBehaviour
         (int, int) cur;
         for (int i = 0; i < rows; i++)
         {
+            curX = (float) -1.5;
             for (int j = 0; j < cols; j++)
             {
-                position = new Vector3(rows, 0, cols);
+                position = new Vector3(curX, 0, curY);
                 cur = (i, j);
                 bool isMine = mineCoords.Contains(cur);
                 GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
@@ -64,7 +69,9 @@ public class BoardScript : MonoBehaviour
                     board[i,j] = associatedTile;
                     tileScript.AssociatedTile = associatedTile;
                 }
+                curX += 1;
             }
+            curY -= 1;
         }
     }
 
