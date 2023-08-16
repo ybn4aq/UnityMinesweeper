@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TileScript : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class TileScript : MonoBehaviour
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
     public Tile AssociatedTile;
-    public (int, int) Coords;
-    public (int, int) Index;
+    public UnityEvent BlankDug;
+    public UnityEvent MineDug;
+    public UnityEvent FlagPlaced;
+    public UnityEvent MineFlagged;
+    public UnityEvent FlagRemoved;
     public enum SpriteType
     {
         Unmined,
@@ -46,12 +50,6 @@ public class TileScript : MonoBehaviour
         {
             HandleRightClick();
         }
-    }
-
-    public TileScript(bool isMine)
-    {
-        AssociatedTile = new Tile(isMine); // i dont think this is the way to handle this
-        // TODO: be able to access board
     }
 
     public void ChangeSprite(SpriteType desired)
@@ -117,11 +115,41 @@ public class TileScript : MonoBehaviour
     void HandleSingleLeftClick()
     {
         Debug.Log("Single left click!");
+        if (!AssociatedTile.IsDug && !AssociatedTile.IsFlagged) // can't dig a tile that's flagged
+        {
+            if (AssociatedTile.IsMine)
+            {
+                MineDug.Invoke();
+                AssociatedTile.IsDug = true; // may not be necessary
+            }
+            else
+            {
+                BlankDug.Invoke();
+                AssociatedTile.IsDug = true;
+            }
+        }
     }
 
     void HandleRightClick()
     {
         Debug.Log("Right click!");
+        if (!AssociatedTile.IsDug)
+        {
+            if (!AssociatedTile.IsFlagged)
+            {
+                FlagPlaced.Invoke();
+                if (AssociatedTile.IsMine)
+                {
+                    MineFlagged.Invoke();
+                    AssociatedTile.IsFlagged = true;
+                }
+            }
+            else
+            {
+                FlagRemoved.Invoke();
+                AssociatedTile.IsFlagged = false;
+            }
+        }
     }
 
     void HandleDoubleLeftClick()
@@ -134,18 +162,15 @@ public class Tile
 {
     public bool IsDug { get; set; }
     public bool IsMine { get; set; }
+    public bool IsFlagged { get; set; }
     public int AdjMines { get; set; }
-    public (int, int) Coords { get; set; }
-
-    public virtual void Dig()
-    {
-        // TODO: emit an event based on whether it's a mine or not
-    }
 
     public Tile(bool isMine)
     {
         IsMine = isMine;
         AdjMines = 0;
+        IsDug = false;
+        IsFlagged = false;
     }
 
     public virtual void IncrementAdjMines()

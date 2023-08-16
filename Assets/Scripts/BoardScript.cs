@@ -20,7 +20,7 @@ public class BoardScript : MonoBehaviour
         mineCoords = GetMineCoords();
         GenerateBoard();
         PopulateAdjTiles();
-        PrintBoard();
+        // PrintBoard();
     }
 
     void Update()
@@ -58,7 +58,6 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 position = new Vector3(curX, curY, 0);
-                // Debug.Log((curX, curY).ToString());
                 cur = (i, j);
                 bool isMine = mineCoords.Contains(cur);
                 GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
@@ -66,7 +65,7 @@ public class BoardScript : MonoBehaviour
                 if (tileScript != null)
                 {
                     Tile associatedTile = new Tile(isMine);
-                    board[i,j] = associatedTile;
+                    board[i,j] = associatedTile; // TODO: figure out whether or not to keep Tile[,] board
                     tileScript.AssociatedTile = associatedTile;
                 }
                 curX += 1;
