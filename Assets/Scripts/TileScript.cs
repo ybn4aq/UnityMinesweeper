@@ -9,7 +9,7 @@ public class TileScript : MonoBehaviour
     public SpriteRenderer sprite;
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
-    private Tile AssociatedTile { get; set; }
+    public Tile AssociatedTile { get; set; }
     public enum SpriteType
     {
         Unmined,

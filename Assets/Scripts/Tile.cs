@@ -17,6 +17,7 @@ public class Tile
     public Tile(bool isMine)
     {
         this.isMine = isMine;
+        adjMines = 0;
     }
 
     public virtual void IncrementAdjMines()

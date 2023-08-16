@@ -58,7 +58,6 @@ public class BoardScript : MonoBehaviour
                 else
                 {
                     board[i, j] = new Tile(false);
-                    ((Tile)board[i, j]).adjMines = 0;
                 }
             }
         }
