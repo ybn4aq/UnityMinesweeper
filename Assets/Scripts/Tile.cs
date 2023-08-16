@@ -11,7 +11,7 @@ public class Tile
 
     public virtual void Dig()
     {
-
+        // TODO: emit an event based on whether it's a mine or not
     }
 
     public Tile(bool isMine)
