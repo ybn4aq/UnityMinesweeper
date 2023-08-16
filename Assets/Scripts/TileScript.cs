@@ -9,6 +9,9 @@ public class TileScript : MonoBehaviour
     public SpriteRenderer sprite;
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
+    public Tile AssociatedTile;
+    public (int, int) Coords;
+    public (int, int) Index;
     public enum SpriteType
     {
         Unmined,
@@ -43,6 +46,12 @@ public class TileScript : MonoBehaviour
         {
             HandleRightClick();
         }
+    }
+
+    public TileScript(bool isMine)
+    {
+        AssociatedTile = new Tile(isMine); // i dont think this is the way to handle this
+        // TODO: be able to access board
     }
 
     public void ChangeSprite(SpriteType desired)

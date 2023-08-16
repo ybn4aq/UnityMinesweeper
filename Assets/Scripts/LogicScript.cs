@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class LogicScript : MonoBehaviour
 {
-
-    private BoardScript boardScript;
+    public GameObject tilePrefab;
     // Start is called before the first frame update
     void Start()
     {
-        boardScript = GetComponent<BoardScript>();
-        for (int i = 0; i < boardScript.rows; i++)
-        {
-            for (int j = 0; i < boardScript.cols; j++)
-            {
 
-            }
-        }
     }
 
     // Update is called once per frame
