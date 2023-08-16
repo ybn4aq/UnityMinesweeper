@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile
 {
-    TileScript tileScript;
     private bool isMined { get; set; }
     public int adjMines { get; set; }
 
@@ -21,6 +21,11 @@ public class Tile
     public virtual void IncrementAdjMines()
     {
 
+    }
+
+    internal void set()
+    {
+        throw new NotImplementedException();
     }
 }
 

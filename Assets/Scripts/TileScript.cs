@@ -9,7 +9,7 @@ public class TileScript : MonoBehaviour
     public SpriteRenderer sprite;
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
-    public Tile AssociatedTile { get; set; }
+    private Tile AssociatedTile { get; set; }
     public enum SpriteType
     {
         Unmined,
@@ -29,7 +29,8 @@ public class TileScript : MonoBehaviour
     }
     void Start()
     {
-
+        AssociatedTile.set();
+        ChangeSprite(SpriteType.Unmined);
     }
     void Update()
     {
