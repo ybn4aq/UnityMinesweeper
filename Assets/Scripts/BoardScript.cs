@@ -21,8 +21,6 @@ public class BoardScript : MonoBehaviour
         GenerateBoard();
         PopulateAdjTiles();
         PrintBoard();
-        curX = (float) -1.5;
-        curY = (float) 3.5;
     }
 
     void Update()
@@ -53,12 +51,14 @@ public class BoardScript : MonoBehaviour
         Vector3 position;
         board = new Tile[rows, cols];
         (int, int) cur;
+        curY = (float)2.5;
         for (int i = 0; i < rows; i++)
         {
             curX = (float) -1.5;
             for (int j = 0; j < cols; j++)
             {
-                position = new Vector3(curX, 0, curY);
+                position = new Vector3(curX, curY, 0);
+                // Debug.Log((curX, curY).ToString());
                 cur = (i, j);
                 bool isMine = mineCoords.Contains(cur);
                 GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
