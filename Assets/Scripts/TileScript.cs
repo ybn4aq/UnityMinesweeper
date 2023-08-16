@@ -29,7 +29,6 @@ public class TileScript : MonoBehaviour
     }
     void Start()
     {
-        AssociatedTile.set();
         ChangeSprite(SpriteType.Unmined);
     }
     void Update()

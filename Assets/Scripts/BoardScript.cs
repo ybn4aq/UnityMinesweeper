@@ -53,12 +53,12 @@ public class BoardScript : MonoBehaviour
                 cur = (i, j);
                 if (mineCoords.Contains(cur))
                 {
-                    board[i, j] = new Mine();
+                    board[i, j] = new Tile(true); 
                 }
                 else
                 {
-                    board[i, j] = new Blank();
-                    ((Blank)board[i, j]).adjMines = 0;
+                    board[i, j] = new Tile(false);
+                    ((Tile)board[i, j]).adjMines = 0;
                 }
             }
         }
@@ -74,14 +74,14 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 cur = board[i, j];
-                if (cur is Mine)
+                if (cur.isMine)
                 {
                     continue;
                 }
                 adjTiles = GetAdjTiles(i, j);
                 for (int k = 0; k < adjTiles.Count; k++)
                 {
-                    if (adjTiles[k] is Mine)
+                    if (adjTiles[k].isMine)
                     {
                         cur.IncrementAdjMines();
                     }
@@ -140,7 +140,7 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 cur = board[i,j];
-                if (cur is Mine)
+                if (cur.isMine)
                 {
                     Debug.Log("Mine");
                 }
