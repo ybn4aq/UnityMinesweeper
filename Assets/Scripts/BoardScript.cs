@@ -17,6 +17,8 @@ public class BoardScript : MonoBehaviour
   
     void Start()
     {
+        // TODO: make CreateGame() method so you can restart play session
+        // TODO: add difficulties
         mineCoords = GetMineCoords();
         GenerateBoard();
         PopulateAdjTiles();
@@ -88,6 +90,7 @@ public class BoardScript : MonoBehaviour
                     continue;
                 }
                 adjTiles = GetAdjTiles(i, j);
+                cur.AdjacentTiles = adjTiles; // Populating List<Tile> AdjacentTiles field for each Tile
                 for (int k = 0; k < adjTiles.Count; k++)
                 {
                     if (adjTiles[k].IsMine)

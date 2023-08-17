@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7661334932071473381}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c328b857583f5d140b06d52dbb3e2405, type: 3}
   - {fileID: 21300000, guid: 1f7b5d60cd9c9844b8ca403ed0fb3fce, type: 3}
   - {fileID: 21300000, guid: 1dd9384c6ee4c9e4684e45e051edc773, type: 3}
+  BlankDug:
+    m_PersistentCalls:
+      m_Calls: []
+  MineDug:
+    m_PersistentCalls:
+      m_Calls: []
+  FlagPlaced:
+    m_PersistentCalls:
+      m_Calls: []
+  MineFlagged:
+    m_PersistentCalls:
+      m_Calls: []
+  FlagRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &7661334932071473381
 BoxCollider2D:
   m_ObjectHideFlags: 0

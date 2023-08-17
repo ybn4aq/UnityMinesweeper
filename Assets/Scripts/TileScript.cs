@@ -16,6 +16,7 @@ public class TileScript : MonoBehaviour
     public UnityEvent FlagPlaced;
     public UnityEvent MineFlagged;
     public UnityEvent FlagRemoved;
+    public UnityEvent MineUnFlagged;
     public enum SpriteType
     {
         Unmined,
@@ -33,10 +34,12 @@ public class TileScript : MonoBehaviour
         FalseMine,
         MineRed,
     }
+
     void Start()
     {
         ChangeSprite(SpriteType.Unmined);
     }
+
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -117,17 +120,27 @@ public class TileScript : MonoBehaviour
         {
             if (AssociatedTile.IsMine)
             {
-                MineDug.Invoke();
-                AssociatedTile.IsDug = true; // may not be necessary
-                ChangeSprite(SpriteType.MineRed);
+                DigMine();
             }
             else
             {
-                BlankDug.Invoke();
-                AssociatedTile.IsDug = true;
-                ChangeSprite(GetBlankSpriteChange());
+                DigBlank();
             }
         }
+    }
+
+    void DigMine()
+    {
+        MineDug.Invoke();
+        AssociatedTile.IsDug = true; // may not be necessary
+        ChangeSprite(SpriteType.MineRed);
+    }
+
+    void DigBlank()
+    {
+        BlankDug.Invoke();
+        AssociatedTile.IsDug = true;
+        ChangeSprite(GetBlankSpriteChange());
     }
 
     void HandleRightClick()
@@ -136,19 +149,46 @@ public class TileScript : MonoBehaviour
         {
             if (!AssociatedTile.IsFlagged)
             {
-                FlagPlaced.Invoke();
-                AssociatedTile.IsFlagged = true;
-                ChangeSprite(SpriteType.Flag);
-                if (AssociatedTile.IsMine)
-                {
-                    MineFlagged.Invoke();
-                }
+                Flag();
             }
             else
             {
-                FlagRemoved.Invoke();
-                AssociatedTile.IsFlagged = false;
-                ChangeSprite(SpriteType.Unmined);
+                UnFlag();
+            }
+        }
+    }
+
+    void Flag()
+    {
+        FlagPlaced.Invoke();
+        AssociatedTile.IsFlagged = true;
+        ChangeSprite(SpriteType.Flag);
+        if (AssociatedTile.IsMine)
+        {
+            MineFlagged.Invoke();
+        }
+    }
+
+    void UnFlag()
+    {
+        FlagRemoved.Invoke();
+        AssociatedTile.IsFlagged = false;
+        ChangeSprite(SpriteType.Unmined);
+        if (AssociatedTile.IsMine)
+        {
+            MineUnFlagged.Invoke();
+        }
+    }
+
+    void HandleZeroTileDug() // will recursively dig all adjacent 0 tiles
+    {
+        Tile cur;
+        for(int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
+        {
+            cur = AssociatedTile.AdjacentTiles[i];
+            if (cur.AdjMines == 0)
+            {
+                
             }
         }
     }
@@ -197,6 +237,7 @@ public class TileScript : MonoBehaviour
             return SpriteType.Num8;
         }
     }
+
 }
 
 
@@ -206,6 +247,7 @@ public class Tile
     public bool IsMine { get; set; }
     public bool IsFlagged { get; set; }
     public int AdjMines { get; set; }
+    public List<Tile> AdjacentTiles { get; set; }
 
     public Tile(bool isMine)
     {

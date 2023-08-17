@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 1421133676}
   m_Layer: 0
   m_Name: Logic
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,6 +307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ef44d8f2f80ad4ead3734b77d02251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameWon:
+    m_PersistentCalls:
+      m_Calls: []
+  GameLoss:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
