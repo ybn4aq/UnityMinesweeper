@@ -40,8 +40,6 @@ public class TileScript : MonoBehaviour
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // check for single left click
         if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition)) 
         {
             HandleSingleLeftClick();
@@ -50,6 +48,7 @@ public class TileScript : MonoBehaviour
         {
             HandleRightClick();
         }
+        // TODO: figure out double left click
     }
 
     public void ChangeSprite(SpriteType desired)
@@ -114,40 +113,42 @@ public class TileScript : MonoBehaviour
 
     void HandleSingleLeftClick()
     {
-        Debug.Log("Single left click!");
         if (!AssociatedTile.IsDug && !AssociatedTile.IsFlagged) // can't dig a tile that's flagged
         {
             if (AssociatedTile.IsMine)
             {
                 MineDug.Invoke();
                 AssociatedTile.IsDug = true; // may not be necessary
+                ChangeSprite(SpriteType.MineRed);
             }
             else
             {
                 BlankDug.Invoke();
                 AssociatedTile.IsDug = true;
+                ChangeSprite(GetBlankSpriteChange());
             }
         }
     }
 
     void HandleRightClick()
     {
-        Debug.Log("Right click!");
-        if (!AssociatedTile.IsDug)
+        if (!AssociatedTile.IsDug) // can't flag a dug tile
         {
             if (!AssociatedTile.IsFlagged)
             {
                 FlagPlaced.Invoke();
+                AssociatedTile.IsFlagged = true;
+                ChangeSprite(SpriteType.Flag);
                 if (AssociatedTile.IsMine)
                 {
                     MineFlagged.Invoke();
-                    AssociatedTile.IsFlagged = true;
                 }
             }
             else
             {
                 FlagRemoved.Invoke();
                 AssociatedTile.IsFlagged = false;
+                ChangeSprite(SpriteType.Unmined);
             }
         }
     }
@@ -156,7 +157,48 @@ public class TileScript : MonoBehaviour
     {
         Debug.Log("Double left click!");
     }
+
+    SpriteType GetBlankSpriteChange()
+    {
+        if (AssociatedTile.AdjMines == 0)
+        {
+            return SpriteType.Num0;
+        }
+        if (AssociatedTile.AdjMines == 1)
+        {
+            return SpriteType.Num1;
+        }
+        if (AssociatedTile.AdjMines == 2)
+        {
+            return SpriteType.Num2;
+        }
+        if (AssociatedTile.AdjMines == 3)
+        {
+            return SpriteType.Num3;
+        }
+        if (AssociatedTile.AdjMines == 4)
+        {
+            return SpriteType.Num4;
+        }
+        if (AssociatedTile.AdjMines == 5)
+        {
+            return SpriteType.Num5;
+        }
+        if (AssociatedTile.AdjMines == 6)
+        {
+            return SpriteType.Num6;
+        }
+        if (AssociatedTile.AdjMines == 7)
+        {
+            return SpriteType.Num7;
+        }
+        else
+        {
+            return SpriteType.Num8;
+        }
+    }
 }
+
 
 public class Tile
 {

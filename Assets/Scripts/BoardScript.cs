@@ -13,7 +13,7 @@ public class BoardScript : MonoBehaviour
     public int numMines;
     private float curX;
     private float curY;
-    public HashSet<(int, int)> mineCoords;
+    private HashSet<(int, int)> mineCoords;
   
     void Start()
     {
@@ -28,7 +28,7 @@ public class BoardScript : MonoBehaviour
         
     }
 
-    private HashSet<(int, int)> GetMineCoords() // This works
+    private HashSet<(int, int)> GetMineCoords()
     {
         System.Random ran = new System.Random();
         int rRow;
