@@ -43,14 +43,16 @@ public class TileScript : MonoBehaviour
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition)) 
-        {
-            HandleSingleLeftClick();
-        }
-        else if (Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition))
+        bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
+        if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
         {
             HandleRightClick();
         }
+        else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition)) 
+        {
+            HandleSingleLeftClick();
+        }
+       
         // TODO: figure out double left click
     }
 
@@ -140,7 +142,20 @@ public class TileScript : MonoBehaviour
     {
         BlankDug.Invoke();
         AssociatedTile.IsDug = true;
-        ChangeSprite(GetBlankSpriteChange() );
+        ChangeSprite(GetBlankSpriteChange());
+        // if 0 tile, mine all adjacent 0 tiles
+        if (AssociatedTile.AdjMines == 0)
+        {
+            Tile cur;
+            for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
+            {
+                cur = AssociatedTile.AdjacentTiles[i];
+                if (cur.AdjMines == 0 && !cur.IsDug) // TODO: this is likely inefficient. HashSet<Tile> visited may be necessary
+                {
+                    cur.AssociatedTileScript.DigBlank();
+                }
+            }
+        }
     }
 
     void HandleRightClick()
@@ -177,19 +192,6 @@ public class TileScript : MonoBehaviour
         if (AssociatedTile.IsMine)
         {
             MineUnFlagged.Invoke();
-        }
-    }
-
-    void HandleZeroTileDug() // will recursively dig all adjacent 0 tiles
-    {
-        Tile cur;
-        for(int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
-        {
-            cur = AssociatedTile.AdjacentTiles[i];
-            if (cur.AdjMines == 0)
-            {
-
-            }
         }
     }
 
@@ -248,6 +250,7 @@ public class Tile
     public bool IsFlagged { get; set; }
     public int AdjMines { get; set; }
     public List<Tile> AdjacentTiles { get; set; }
+    public TileScript AssociatedTileScript { get; set; }
 
     public Tile(bool isMine)
     {

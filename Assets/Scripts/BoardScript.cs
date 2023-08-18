@@ -69,6 +69,7 @@ public class BoardScript : MonoBehaviour
                     Tile associatedTile = new Tile(isMine);
                     board[i,j] = associatedTile; // TODO: figure out whether or not to keep Tile[,] board
                     tileScript.AssociatedTile = associatedTile;
+                    associatedTile.AssociatedTileScript = tileScript;
                 }
                 curX += 1;
             }
@@ -101,7 +102,6 @@ public class BoardScript : MonoBehaviour
             }
         }
     }
-
     private List<Tile> GetAdjTiles(int row, int col)
     {
         int r;
