@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BoardScript : MonoBehaviour
 {
@@ -13,22 +15,67 @@ public class BoardScript : MonoBehaviour
     private float curX;
     private float curY;
     private HashSet<(int, int)> mineCoords;
+    public UnityEvent GameWon;
+    public UnityEvent GameLoss;
+    public UnityEvent RestartGame;
+    public int minesFlagged;
+    public int blanksDug;
+    public int numBlanks;
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
     // EXPERT: 30 x 16, 99 mines
-  
+    // would probably make the most sense to hard code in coordinate placements for tiles based on difficulty
+    // resize camera differently for each difficulty
+
     void Start()
     {
         StartGame();
+        minesFlagged = 0;
+        blanksDug = 0;
+        numBlanks = (rows * cols) - numMines;
         // TODO: add difficulties
     }
 
     void Update()
     {
         // TODO: listen for UnityEvent RestartGame
+        if (minesFlagged == numMines && blanksDug == numBlanks)
+        {
+            GameWon.Invoke();
+        }
     }
 
-    void StartGame()
+    public void OnMineDug()
+    {
+
+    }
+
+    public void OnBlankDug()
+    {
+
+    }
+
+    public void OnMineFlagged()
+    {
+
+    }
+
+    public void OnBlankFlagged()
+    {
+
+    }
+
+    public void OnMineUnFlagged()
+    {
+
+    }
+
+    public void OnBlankUnFlagged()
+    {
+
+    }
+
+    public void StartGame()
     {
         mineCoords = GetMineCoords();
         GenerateBoard();
@@ -67,13 +114,13 @@ public class BoardScript : MonoBehaviour
         board = null;
     }
 
-    private void RestartGame()
+    public void ClearGame()
     {
         ClearBoard();
         StartGame();
     }
 
-    private void GenerateBoard()
+    public void GenerateBoard()
     {
         Vector3 position;
         board = new Tile[rows, cols];

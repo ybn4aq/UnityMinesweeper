@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,10 +14,12 @@ public class TileScript : MonoBehaviour
     public Tile AssociatedTile;
     public UnityEvent BlankDug;
     public UnityEvent MineDug;
-    public UnityEvent FlagPlaced;
+    public UnityEvent BlankFlagged;
     public UnityEvent MineFlagged;
-    public UnityEvent FlagRemoved;
+    public UnityEvent BlankUnflagged;
     public UnityEvent MineUnFlagged;
+    public UnityEvent FlagPlaced; // for some reason removing these bottom 2 causes compilation errors
+    public UnityEvent FlagRemoved;
     public enum SpriteType
     {
         Unmined,

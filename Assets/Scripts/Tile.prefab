@@ -117,20 +117,98 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1dd9384c6ee4c9e4684e45e051edc773, type: 3}
   BlankDug:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnBlankDug
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MineDug:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnMineDug
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BlankFlagged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnBlankFlagged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MineFlagged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnMineFlagged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BlankUnflagged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnBlankUnFlagged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MineUnFlagged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6340780971085925659, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
+        m_TargetAssemblyTypeName: BoardScript, Assembly-CSharp
+        m_MethodName: OnMineUnFlagged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   FlagPlaced:
     m_PersistentCalls:
       m_Calls: []
-  MineFlagged:
-    m_PersistentCalls:
-      m_Calls: []
   FlagRemoved:
-    m_PersistentCalls:
-      m_Calls: []
-  MineUnFlagged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &7661334932071473381
