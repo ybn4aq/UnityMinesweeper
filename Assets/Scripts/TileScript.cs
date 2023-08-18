@@ -112,7 +112,7 @@ public class TileScript : MonoBehaviour
         {
             sprite.sprite = spriteArray[13];
         }
-    }
+    } // see if this works for dfs 0 tile dig scenario
 
     void HandleSingleLeftClick()
     {
@@ -140,7 +140,7 @@ public class TileScript : MonoBehaviour
     {
         BlankDug.Invoke();
         AssociatedTile.IsDug = true;
-        ChangeSprite(GetBlankSpriteChange());
+        ChangeSprite(GetBlankSpriteChange() );
     }
 
     void HandleRightClick()
@@ -188,7 +188,7 @@ public class TileScript : MonoBehaviour
             cur = AssociatedTile.AdjacentTiles[i];
             if (cur.AdjMines == 0)
             {
-                
+
             }
         }
     }
