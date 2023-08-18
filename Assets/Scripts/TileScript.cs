@@ -114,7 +114,7 @@ public class TileScript : MonoBehaviour
         {
             sprite.sprite = spriteArray[13];
         }
-    } // see if this works for dfs 0 tile dig scenario
+    }
 
     void HandleSingleLeftClick()
     {

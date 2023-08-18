@@ -170,7 +170,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 7085893438972142961, guid: 3776b009abf83404ab04b81707965592, type: 3}
   rows: 4
   cols: 4
-  numMines: 2
+  numMines: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +311,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   GameLoss:
+    m_PersistentCalls:
+      m_Calls: []
+  RestartGame:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1660057539 &9223372036854775807

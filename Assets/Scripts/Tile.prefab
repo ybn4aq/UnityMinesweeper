@@ -130,6 +130,9 @@ MonoBehaviour:
   FlagRemoved:
     m_PersistentCalls:
       m_Calls: []
+  MineUnFlagged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &7661334932071473381
 BoxCollider2D:
   m_ObjectHideFlags: 0

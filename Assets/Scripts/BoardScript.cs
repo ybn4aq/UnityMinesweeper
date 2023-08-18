@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 
 public class BoardScript : MonoBehaviour
@@ -14,20 +13,26 @@ public class BoardScript : MonoBehaviour
     private float curX;
     private float curY;
     private HashSet<(int, int)> mineCoords;
+    // EASY: 8 x 8, 10 mines
+    // INTERMEDIATE: 16 x 16, 40 mines
+    // EXPERT: 30 x 16, 99 mines
   
     void Start()
     {
-        // TODO: make CreateGame() method so you can restart play session
+        StartGame();
         // TODO: add difficulties
-        mineCoords = GetMineCoords();
-        GenerateBoard();
-        PopulateAdjTiles();
-        // PrintBoard();
     }
 
     void Update()
     {
-        
+        // TODO: listen for UnityEvent RestartGame
+    }
+
+    void StartGame()
+    {
+        mineCoords = GetMineCoords();
+        GenerateBoard();
+        PopulateAdjTiles();
     }
 
     private HashSet<(int, int)> GetMineCoords()
@@ -46,6 +51,26 @@ public class BoardScript : MonoBehaviour
             }
         }
         return cache;
+    }
+
+    private void ClearBoard()
+    {
+        Tile cur;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                cur = board[i, j];
+                Destroy(cur.AssociatedTileScript);
+            }
+        }
+        board = null;
+    }
+
+    private void RestartGame()
+    {
+        ClearBoard();
+        StartGame();
     }
 
     private void GenerateBoard()
