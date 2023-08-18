@@ -18,8 +18,8 @@ public class TileScript : MonoBehaviour
     public UnityEvent MineFlagged;
     public UnityEvent BlankUnflagged;
     public UnityEvent MineUnFlagged;
-    public UnityEvent FlagPlaced; // for some reason removing these bottom 2 causes compilation errors
-    public UnityEvent FlagRemoved;
+    public bool IsGameLoss;
+    public bool IsGameWon;
     public enum SpriteType
     {
         Unmined,
@@ -41,22 +41,50 @@ public class TileScript : MonoBehaviour
     void Start()
     {
         ChangeSprite(SpriteType.Unmined);
+        IsGameWon = false;
+        IsGameLoss = false;
     }
 
     void Update()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
-        if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
+        if (!IsGameLoss && !IsGameWon) // only handle tile interactions during gameplay
         {
-            HandleRightClick();
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
+            if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
+            {
+                HandleRightClick();
+            }
+            else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition))
+            {
+                HandleSingleLeftClick();
+            }
+            // TODO: figure out double left click
         }
-        else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition)) 
+    }
+
+    public void OnGameLoss()
+    {
+        IsGameLoss = true;
+        if (AssociatedTile.IsMine && !AssociatedTile.IsFlagged)
         {
-            HandleSingleLeftClick();
+            ChangeSprite(SpriteType.Mine);
         }
-       
-        // TODO: figure out double left click
+        else if (AssociatedTile.IsFlagged)
+        {
+            ChangeSprite(SpriteType.FalseMine);
+        }
+    }
+
+    public void OnGameWon()
+    {
+        IsGameWon = true;
+    }
+
+    public void OnGameRestart() // may not even be necessary, i think all tile prefabs are destroyed
+    {
+        IsGameLoss = false;
+        IsGameWon = false;
     }
 
     public void ChangeSprite(SpriteType desired)
@@ -178,23 +206,29 @@ public class TileScript : MonoBehaviour
 
     void Flag()
     {
-        FlagPlaced.Invoke();
         AssociatedTile.IsFlagged = true;
         ChangeSprite(SpriteType.Flag);
         if (AssociatedTile.IsMine)
         {
             MineFlagged.Invoke();
         }
+        else
+        {
+            BlankFlagged.Invoke();
+        }
     }
 
     void UnFlag()
     {
-        FlagRemoved.Invoke();
         AssociatedTile.IsFlagged = false;
         ChangeSprite(SpriteType.Unmined);
         if (AssociatedTile.IsMine)
         {
             MineUnFlagged.Invoke();
+        }
+        else
+        {
+            BlankUnflagged.Invoke();
         }
     }
 

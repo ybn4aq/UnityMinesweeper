@@ -17,10 +17,12 @@ public class BoardScript : MonoBehaviour
     private HashSet<(int, int)> mineCoords;
     public UnityEvent GameWon;
     public UnityEvent GameLoss;
-    public UnityEvent RestartGame;
+    public UnityEvent GameRestart;
     public int minesFlagged;
     public int blanksDug;
     public int numBlanks;
+    public int flagsPlaced;
+    public Tile losingTile;
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
     // EXPERT: 30 x 16, 99 mines
@@ -42,37 +44,45 @@ public class BoardScript : MonoBehaviour
         if (minesFlagged == numMines && blanksDug == numBlanks)
         {
             GameWon.Invoke();
+            // TODO: have GUI listen to this
+            // TODO: have each tile be unable to be interacted with during game won
+            // TODO: reveal mines
         }
     }
 
     public void OnMineDug()
     {
-
+        GameLoss.Invoke();
+        // TODO: have GUI listen to this
+        // TODO: have each tile be unable to be interacted with during game loss
+        // TODO: reveal mines, including false positives
     }
 
     public void OnBlankDug()
     {
-
+        blanksDug++;
     }
 
     public void OnMineFlagged()
     {
-
+        flagsPlaced++; // will be what the scoreboard displays
+        minesFlagged++;
     }
 
     public void OnBlankFlagged()
     {
-
+        flagsPlaced++;
     }
 
     public void OnMineUnFlagged()
     {
-
+        minesFlagged--;
+        flagsPlaced--;
     }
 
     public void OnBlankUnFlagged()
     {
-
+        flagsPlaced--;
     }
 
     public void StartGame()
