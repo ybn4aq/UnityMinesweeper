@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 public class TileScript : MonoBehaviour
 {
+    // TODO: go through and make any fields or methods private that you can
+    // TODO: use a spritesheet for sprites to save space
     public SpriteRenderer sprite;
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
@@ -65,6 +67,7 @@ public class TileScript : MonoBehaviour
 
     public void OnGameLoss()
     {
+        Debug.Log("OnGameLoss fired");
         IsGameLoss = true;
         if (AssociatedTile.IsMine && !AssociatedTile.IsFlagged)
         {
@@ -78,6 +81,7 @@ public class TileScript : MonoBehaviour
 
     public void OnGameWon()
     {
+        Debug.Log("OnGameWon fired");
         IsGameWon = true;
     }
 

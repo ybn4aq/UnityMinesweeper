@@ -48,10 +48,19 @@ public class BoardScript : MonoBehaviour
             // TODO: have each tile be unable to be interacted with during game won
             // TODO: reveal mines
         }
+        if (Input.GetKeyUp(KeyCode.Space)) // Debug: output key variables to console
+        {
+            Debug.Log("Mines Flagged: " + minesFlagged.ToString());
+            Debug.Log("Blanks Dug: "+blanksDug.ToString());
+            Debug.Log("Number of Blanks: " + numBlanks.ToString());
+            Debug.Log("Flags Placed: "+flagsPlaced.ToString());
+            Debug.Log("Number of mines: "+numMines.ToString());
+        }
     }
 
     public void OnMineDug()
     {
+        Debug.Log("OnMineDug fired");
         GameLoss.Invoke();
         // TODO: have GUI listen to this
         // TODO: have each tile be unable to be interacted with during game loss
@@ -60,28 +69,33 @@ public class BoardScript : MonoBehaviour
 
     public void OnBlankDug()
     {
+        Debug.Log("OnBlankDug fired");
         blanksDug++;
     }
 
     public void OnMineFlagged()
     {
+        Debug.Log("OnMineFlagged fired");
         flagsPlaced++; // will be what the scoreboard displays
         minesFlagged++;
     }
 
     public void OnBlankFlagged()
     {
+        Debug.Log("OnBlankFlagged fired");
         flagsPlaced++;
     }
 
     public void OnMineUnFlagged()
     {
+        Debug.Log("OnMineUnFlagged fired");
         minesFlagged--;
         flagsPlaced--;
     }
 
     public void OnBlankUnFlagged()
     {
+        Debug.Log("OnBlankUnFlagged fired");
         flagsPlaced--;
     }
 
