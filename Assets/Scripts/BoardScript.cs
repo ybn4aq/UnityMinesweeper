@@ -23,7 +23,9 @@ public class BoardScript : MonoBehaviour
     public int BlanksDug { get; set; } = 0;
     public int NumBlanks { get; set; } = 0;
     public int FlagsPlaced { get; set; } = 0;
-    public Tile LosingTile { get; set; }
+    public Tile LosingTile { get; set; } // TODO: figure this out so that losing tile doesn't change sprite from mine red
+    public LogicScript logic { get; set; }
+
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
     // EXPERT: 30 x 16, 99 mines
@@ -38,6 +40,9 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced = 0;
         NumBlanks = (rows * cols) - numMines;
         // TODO: add difficulties
+        GameWon.AddListener(logic.OnGameWon);
+        GameLoss.AddListener(logic.OnGameLoss);
+        GameRestart.AddListener(logic.OnGameRestart);
     }
 
     void Update()
@@ -62,7 +67,7 @@ public class BoardScript : MonoBehaviour
 
     public void OnMineDug()
     {
-        Debug.Log("OnMineDug fired");
+        // Debug.Log("OnMineDug fired");
         GameLoss.Invoke();
         // TODO: have GUI listen to this
         // TODO: have each tile be unable to be interacted with during game loss
@@ -71,34 +76,34 @@ public class BoardScript : MonoBehaviour
 
     public void OnBlankDug()
     {
-        Debug.Log($"{name} ({GetInstanceID()}) reacted to an event.");
-        Debug.Log("OnBlankDug fired");
+        // Debug.Log($"{name} ({GetInstanceID()}) reacted to an event.");
+        // Debug.Log("OnBlankDug fired");
         BlanksDug++;
     }
 
     public void OnMineFlagged()
     {
-        Debug.Log("OnMineFlagged fired");
+        // Debug.Log("OnMineFlagged fired");
         FlagsPlaced++; // will be what the scoreboard displays
         MinesFlagged++;
     }
 
     public void OnBlankFlagged()
     {
-        Debug.Log("OnBlankFlagged fired");
+        // Debug.Log("OnBlankFlagged fired");
         FlagsPlaced++;
     }
 
     public void OnMineUnFlagged()
     {
-        Debug.Log("OnMineUnFlagged fired");
+        // Debug.Log("OnMineUnFlagged fired");
         MinesFlagged--;
         FlagsPlaced--;
     }
 
     public void OnBlankUnFlagged()
     {
-        Debug.Log("OnBlankUnFlagged fired");
+        // Debug.Log("OnBlankUnFlagged fired");
         FlagsPlaced--;
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Board
   - Tile
+  - Logic
   layers:
   - Default
   - TransparentFX

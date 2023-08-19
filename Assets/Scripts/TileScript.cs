@@ -22,7 +22,7 @@ public class TileScript : MonoBehaviour
     public UnityEvent MineUnFlagged;
     public bool IsGameLoss;
     public bool IsGameWon;
-    public BoardScript boardScript;
+    public BoardScript boardScript { get; set; }
     public enum SpriteType
     {
         Unmined,

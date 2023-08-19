@@ -33,5 +33,7 @@ public class LogicScript : MonoBehaviour
     void StartGame()
     {
         GameObject instantiatedBoard = Instantiate(boardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        BoardScript boardScript = instantiatedBoard.GetComponent<BoardScript>();
+        boardScript.logic = this;
     }
 }
