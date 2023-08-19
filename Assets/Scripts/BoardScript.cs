@@ -24,7 +24,7 @@ public class BoardScript : MonoBehaviour
     public int NumBlanks { get; set; } = 0;
     public int FlagsPlaced { get; set; } = 0;
     public Tile LosingTile { get; set; } // TODO: figure this out so that losing tile doesn't change sprite from mine red
-    public LogicScript logic { get; set; }
+    public LogicScript Logic { get; set; }
 
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
@@ -34,15 +34,29 @@ public class BoardScript : MonoBehaviour
 
     void Start()
     {
-        StartGame();
         MinesFlagged = 0;
         BlanksDug = 0;
         FlagsPlaced = 0;
         NumBlanks = (rows * cols) - numMines;
+        mineCoords = GetMineCoords();
+        GenerateBoard();
+        PopulateAdjTiles();
+        // adding listeners to each tile
+        Tile cur;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                cur = board[i, j];
+                GameWon.AddListener(cur.AssociatedTileScript.OnGameWon);
+                GameLoss.AddListener(cur.AssociatedTileScript.OnGameLoss);
+                GameRestart.AddListener(cur.AssociatedTileScript.OnGameRestart);
+            }
+        }
         // TODO: add difficulties
-        GameWon.AddListener(logic.OnGameWon);
-        GameLoss.AddListener(logic.OnGameLoss);
-        GameRestart.AddListener(logic.OnGameRestart);
+        GameWon.AddListener(Logic.OnGameWon);
+        GameLoss.AddListener(Logic.OnGameLoss);
+        GameRestart.AddListener(Logic.OnGameRestart); // may not be necessary. all tile prefabs will be destroyed
     }
 
     void Update()
@@ -107,13 +121,6 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced--;
     }
 
-    public void StartGame()
-    {
-        mineCoords = GetMineCoords();
-        GenerateBoard();
-        PopulateAdjTiles();
-    }
-
     private HashSet<(int, int)> GetMineCoords()
     {
         System.Random ran = new System.Random();
@@ -130,26 +137,6 @@ public class BoardScript : MonoBehaviour
             }
         }
         return cache;
-    }
-
-    private void ClearBoard()
-    {
-        Tile cur;
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                cur = board[i, j];
-                Destroy(cur.AssociatedTileScript);
-            }
-        }
-        board = null;
-    }
-
-    public void ClearGame()
-    {
-        ClearBoard();
-        StartGame();
     }
 
     public void GenerateBoard()

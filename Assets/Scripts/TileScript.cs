@@ -76,9 +76,12 @@ public class TileScript : MonoBehaviour
     public void OnGameLoss()
     {
         IsGameLoss = true;
-        if (AssociatedTile.IsMine && !AssociatedTile.IsFlagged)
+        if (AssociatedTile.IsMine)
         {
-            ChangeSprite(SpriteType.Mine);
+            if (!AssociatedTile.IsFlagged)
+            {
+                ChangeSprite(SpriteType.Mine);
+            }
         }
         else if (AssociatedTile.IsFlagged)
         {
@@ -191,7 +194,7 @@ public class TileScript : MonoBehaviour
             for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
             {
                 cur = AssociatedTile.AdjacentTiles[i];
-                if (cur.AdjMines == 0 && !cur.IsDug) // TODO: this is likely inefficient. HashSet<Tile> visited may be necessary
+                if (cur.AdjMines == 0 && !cur.IsDug && !cur.IsFlagged)
                 {
                     cur.AssociatedTileScript.DigBlank();
                 }
