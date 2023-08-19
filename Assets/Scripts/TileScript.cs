@@ -22,6 +22,7 @@ public class TileScript : MonoBehaviour
     public UnityEvent MineUnFlagged;
     public bool IsGameLoss;
     public bool IsGameWon;
+    public BoardScript boardScript;
     public enum SpriteType
     {
         Unmined,
@@ -45,6 +46,13 @@ public class TileScript : MonoBehaviour
         ChangeSprite(SpriteType.Unmined);
         IsGameWon = false;
         IsGameLoss = false;
+        BlankDug.AddListener(boardScript.OnBlankDug);
+        MineDug.AddListener(boardScript.OnMineDug);
+        BlankFlagged.AddListener(boardScript.OnBlankFlagged);
+        MineFlagged.AddListener (boardScript.OnMineFlagged);
+        BlankUnflagged.AddListener(boardScript.OnBlankUnFlagged);
+        MineUnFlagged.AddListener(boardScript.OnMineUnFlagged);
+        // TODO: remove listeners later
     }
 
     void Update()

@@ -12,18 +12,18 @@ public class BoardScript : MonoBehaviour
     public Tile[,] board; // m x n
     public int rows; // m, height
     public int cols; // n, height
-    public int numMines;
+    public int numMines;    
     private float curX;
     private float curY;
     private HashSet<(int, int)> mineCoords;
     public UnityEvent GameWon;
     public UnityEvent GameLoss;
     public UnityEvent GameRestart;
-    public int minesFlagged { get; set; } = 0;
-    public int blanksDug { get; set; } = 0;
-    public int numBlanks { get; set; } = 0;
-    public int flagsPlaced { get; set; } = 0;
-    public Tile losingTile { get; set; }
+    public int MinesFlagged { get; set; } = 0;
+    public int BlanksDug { get; set; } = 0;
+    public int NumBlanks { get; set; } = 0;
+    public int FlagsPlaced { get; set; } = 0;
+    public Tile LosingTile { get; set; }
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
     // EXPERT: 30 x 16, 99 mines
@@ -33,17 +33,17 @@ public class BoardScript : MonoBehaviour
     void Start()
     {
         StartGame();
-        minesFlagged = 0;
-        blanksDug = 0;
-        flagsPlaced = 0;
-        numBlanks = (rows * cols) - numMines;
+        MinesFlagged = 0;
+        BlanksDug = 0;
+        FlagsPlaced = 0;
+        NumBlanks = (rows * cols) - numMines;
         // TODO: add difficulties
     }
 
     void Update()
     {
         // TODO: listen for UnityEvent RestartGame
-        if (minesFlagged == numMines && blanksDug == numBlanks)
+        if (MinesFlagged == numMines && BlanksDug == NumBlanks)
         {
             GameWon.Invoke();
             // TODO: have GUI listen to this
@@ -52,10 +52,10 @@ public class BoardScript : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space)) // Debug: output key variables to console
         {
-            Debug.Log("Mines Flagged: " + minesFlagged.ToString());
-            Debug.Log("Blanks Dug: "+blanksDug.ToString());
-            Debug.Log("Number of Blanks: " + numBlanks.ToString());
-            Debug.Log("Flags Placed: "+flagsPlaced.ToString());
+            Debug.Log("Mines Flagged: " + MinesFlagged.ToString());
+            Debug.Log("Blanks Dug: "+BlanksDug.ToString());
+            Debug.Log("Number of Blanks: " + NumBlanks.ToString());
+            Debug.Log("Flags Placed: "+FlagsPlaced.ToString());
             Debug.Log("Number of mines: "+numMines.ToString());
         }
     }
@@ -71,34 +71,35 @@ public class BoardScript : MonoBehaviour
 
     public void OnBlankDug()
     {
+        Debug.Log($"{name} ({GetInstanceID()}) reacted to an event.");
         Debug.Log("OnBlankDug fired");
-        blanksDug++;
+        BlanksDug++;
     }
 
     public void OnMineFlagged()
     {
         Debug.Log("OnMineFlagged fired");
-        flagsPlaced++; // will be what the scoreboard displays
-        minesFlagged++;
+        FlagsPlaced++; // will be what the scoreboard displays
+        MinesFlagged++;
     }
 
     public void OnBlankFlagged()
     {
         Debug.Log("OnBlankFlagged fired");
-        flagsPlaced++;
+        FlagsPlaced++;
     }
 
     public void OnMineUnFlagged()
     {
         Debug.Log("OnMineUnFlagged fired");
-        minesFlagged--;
-        flagsPlaced--;
+        MinesFlagged--;
+        FlagsPlaced--;
     }
 
     public void OnBlankUnFlagged()
     {
         Debug.Log("OnBlankUnFlagged fired");
-        flagsPlaced--;
+        FlagsPlaced--;
     }
 
     public void StartGame()
@@ -168,6 +169,7 @@ public class BoardScript : MonoBehaviour
                     board[i,j] = associatedTile; // TODO: figure out whether or not to keep Tile[,] board
                     tileScript.AssociatedTile = associatedTile;
                     associatedTile.AssociatedTileScript = tileScript;
+                    tileScript.boardScript = this; // TODO: see if this works
                 }
                 curX += 1;
             }
