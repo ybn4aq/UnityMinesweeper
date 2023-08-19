@@ -121,6 +121,19 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced--;
     }
 
+    public void Clear()
+    {
+        Tile cur;
+        for (int i = 0; i < rows; i ++)
+        {
+            for (int j = 0; j < cols; j ++)
+            {
+                cur = board[i, j];
+                Destroy(cur.AssociatedTileScript);
+            }
+        }
+    }
+
     private HashSet<(int, int)> GetMineCoords()
     {
         System.Random ran = new System.Random();

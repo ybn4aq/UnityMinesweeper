@@ -13,6 +13,7 @@ public class LogicScript : MonoBehaviour
     public GameObject[] Tiles;
 
     public GameObject boardPrefab;
+    public BoardScript boardScript;
     void Start()
     {
         StartGame();
@@ -35,6 +36,7 @@ public class LogicScript : MonoBehaviour
 
     public void OnGameRestart()
     {
+        boardScript.Clear();
         Destroy(boardPrefab);
         StartGame();
     }
