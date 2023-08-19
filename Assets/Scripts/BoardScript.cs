@@ -34,6 +34,7 @@ public class BoardScript : MonoBehaviour
         StartGame();
         minesFlagged = 0;
         blanksDug = 0;
+        flagsPlaced = 0;
         numBlanks = (rows * cols) - numMines;
         // TODO: add difficulties
     }

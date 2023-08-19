@@ -67,7 +67,6 @@ public class TileScript : MonoBehaviour
 
     public void OnGameLoss()
     {
-        Debug.Log("OnGameLoss fired");
         IsGameLoss = true;
         if (AssociatedTile.IsMine && !AssociatedTile.IsFlagged)
         {
@@ -81,7 +80,6 @@ public class TileScript : MonoBehaviour
 
     public void OnGameWon()
     {
-        Debug.Log("OnGameWon fired");
         IsGameWon = true;
     }
 
