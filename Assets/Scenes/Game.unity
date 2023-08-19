@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,9 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e4cb04daa916d4faffe99cfab8b0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curDifficulty: 0
   Tiles: []
   boardPrefab: {fileID: 7324568594494821092, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
   boardScript: {fileID: 0}
+  MainCamera: {fileID: 519420031}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

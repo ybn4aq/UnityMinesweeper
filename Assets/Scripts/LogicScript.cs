@@ -10,12 +10,26 @@ public class LogicScript : MonoBehaviour
         Intermediate,
         Expert,
     }
+    public Difficulty curDifficulty;
     public GameObject[] Tiles;
     public GameObject boardPrefab;
     public BoardScript boardScript;
+    public Camera MainCamera;
     void Start()
     {
         StartGame();
+        if (curDifficulty == Difficulty.Easy)
+        {
+
+        }
+        else if (curDifficulty == Difficulty.Intermediate)
+        {
+
+        }
+        else // expert
+        {
+            
+        }
     }
 
     void Update()
