@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,11 +19,11 @@ public class BoardScript : MonoBehaviour
     public UnityEvent GameWon;
     public UnityEvent GameLoss;
     public UnityEvent GameRestart;
-    public int minesFlagged;
-    public int blanksDug;
-    public int numBlanks;
-    public int flagsPlaced;
-    public Tile losingTile;
+    public int minesFlagged { get; set; } = 0;
+    public int blanksDug { get; set; } = 0;
+    public int numBlanks { get; set; } = 0;
+    public int flagsPlaced { get; set; } = 0;
+    public Tile losingTile { get; set; }
     // EASY: 8 x 8, 10 mines
     // INTERMEDIATE: 16 x 16, 40 mines
     // EXPERT: 30 x 16, 99 mines
