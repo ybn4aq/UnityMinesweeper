@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class SmileyScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private Sprite[] SpriteArray;
+    [SerializeField]
+    private SpriteRenderer Sprite;
+    private enum SpriteType
+    {
+        Lose,
+        NeutralPressed,
+        NeutralUnpressed,
+        Win,
+        Surprised,
+    }
     void Start()
+    
+    {
+        
+    }
+    
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OnGameWon()
     {
-        
+
+    }
+    public void OnGameLoss()
+    {
+
     }
 }
