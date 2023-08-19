@@ -11,7 +11,6 @@ public class LogicScript : MonoBehaviour
         Expert,
     }
     public GameObject[] Tiles;
-
     public GameObject boardPrefab;
     public BoardScript boardScript;
     void Start()
@@ -20,7 +19,7 @@ public class LogicScript : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
 
     }
 
@@ -44,7 +43,8 @@ public class LogicScript : MonoBehaviour
     void StartGame() // todo: add parameter of difficulty
     {
         GameObject instantiatedBoard = Instantiate(boardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        BoardScript boardScript = instantiatedBoard.GetComponent<BoardScript>();
-        boardScript.Logic = this;
+        boardScript = instantiatedBoard.GetComponent<BoardScript>();
     }
 }
+
+
