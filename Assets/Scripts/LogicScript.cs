@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LogicScript : MonoBehaviour
 {
-    [SerializeField] public BoardScript boardScript;
+    public GameObject boardPrefab;
     void Start()
     {
-        boardScript = GetComponent<BoardScript>();
+        GameObject instantiatedBoard = Instantiate(boardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     void Update()
-    {
+    {   
         
     }
 }

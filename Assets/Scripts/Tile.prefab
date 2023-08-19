@@ -205,12 +205,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  FlagPlaced:
-    m_PersistentCalls:
-      m_Calls: []
-  FlagRemoved:
-    m_PersistentCalls:
-      m_Calls: []
+  IsGameLoss: 0
+  IsGameWon: 0
 --- !u!61 &7661334932071473381
 BoxCollider2D:
   m_ObjectHideFlags: 0
