@@ -44,14 +44,5 @@ public class LogicScript : MonoBehaviour
         GameObject instantiatedBoard = Instantiate(boardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript boardScript = instantiatedBoard.GetComponent<BoardScript>();
         boardScript.Logic = this;
-        // TODO: delete below because it's unnecessary, but it was a good realization to make
-        Tiles = GameObject.FindGameObjectsWithTag("Tile");
-        foreach (GameObject tile in Tiles)
-        {
-            if (tile != null)
-            {
-
-            }
-        }
     }
 }
