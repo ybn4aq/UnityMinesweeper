@@ -50,17 +50,17 @@ public class UIScript : MonoBehaviour
 
     public void OnEasySelected()
     {
-
+        OnHideUI();
     }
 
     public void OnIntermediateSelected()
     {
-
+        OnHideUI();
     }
 
     public void OnExpertSelected()
     {
-
+        OnHideUI();
     }
 
     public void OnGameWon()

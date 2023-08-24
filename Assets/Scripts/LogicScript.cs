@@ -63,8 +63,8 @@ public class LogicScript : MonoBehaviour
     public void OnExpertSelected()
     {
         CurDifficulty = Difficulty.Expert;
-        LRows = 30;
-        LCols = 16;
+        LRows = 16;
+        LCols = 30;
         LNumMines = 99;
         StartGame();
     }
