@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LogicScript : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class LogicScript : MonoBehaviour
     public GameObject boardPrefab;
     public BoardScript boardScript;
     public Camera MainCamera;
+    public UnityEvent InitialStart;
+
     void Start()
     {
+        InitialStart.Invoke();
         StartGame();
         if (curDifficulty == Difficulty.Easy)
         {
