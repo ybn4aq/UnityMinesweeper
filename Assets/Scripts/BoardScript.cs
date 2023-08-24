@@ -108,6 +108,11 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced--;
     }
 
+    public void OnActuallyStart()
+    {
+
+    }
+
     public void Clear()
     {
         Tile cur;

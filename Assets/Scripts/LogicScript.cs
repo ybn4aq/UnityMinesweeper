@@ -17,32 +17,36 @@ public class LogicScript : MonoBehaviour
     public BoardScript BoardScript;
     public Camera MainCamera;
     public UnityEvent InitialStart;
-    private GameObject UI;
+    public GameObject UIPrefab;
+    public UnityEvent ActuallyStart;
+   
 
     void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("UI"); // TODO: make sure this works
-        InitialStart.Invoke();
-
-
-
+        GameObject instantiatedUI = GameObject.Instantiate(UIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        InitialStart.Invoke(); // show full UI
 
         StartGame(); // TODO: only start game when difficulty selection methods are invoked
     }
 
     public void OnEasySelected()
     {
+        CurDifficulty = Difficulty.Easy;
+        StartGame();
 
     }
 
     public void OnIntermediateSelected()
     {
+        CurDifficulty = Difficulty.Intermediate;
+        StartGame();
 
     }
 
     public void OnExpertSelected()
     {
-
+        CurDifficulty = Difficulty.Expert;
+        StartGame();
     }
 
     void Update()
@@ -71,6 +75,19 @@ public class LogicScript : MonoBehaviour
     {
         GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript = instantiatedBoard.GetComponent<BoardScript>();
+        ActuallyStart.AddListener(BoardScript.OnActuallyStart);
+        if (CurDifficulty == Difficulty.Easy)
+        {
+
+        }
+        else if (CurDifficulty == Difficulty.Intermediate)
+        {
+
+        }
+        else // expert
+        {
+
+        }
     }
 }
 
