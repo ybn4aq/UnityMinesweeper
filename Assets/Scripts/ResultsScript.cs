@@ -17,7 +17,6 @@ public class ResultsScript : MonoBehaviour
     void Start()
     {
         Results = GameObject.FindGameObjectWithTag("Results");
-        Results.SetActive(false); // TODO: make sure this works
     }
 
     void Update()

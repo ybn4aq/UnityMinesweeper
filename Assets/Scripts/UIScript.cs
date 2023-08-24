@@ -22,6 +22,7 @@ public class UIScript : MonoBehaviour
         Quit = GameObject.FindGameObjectWithTag("Quit");
         Results = GameObject.FindGameObjectWithTag("Results");
         Background = GameObject.FindGameObjectWithTag("Background");
+        Results.SetActive(false);
     }
 
     void Update()
@@ -31,7 +32,11 @@ public class UIScript : MonoBehaviour
 
     public void OnInitialStart()
     {
-
+        Logo.SetActive(false);
+        Difficulties.SetActive(false); 
+        Quit.SetActive(false);
+        Results.SetActive(false);
+        Background.SetActive(false);
     }
 
     public void OnEasySelected()
