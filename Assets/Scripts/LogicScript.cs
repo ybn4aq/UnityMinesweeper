@@ -27,7 +27,7 @@ public class LogicScript : MonoBehaviour
 
     void Start()
     {
-        GameObject instantiatedUI = GameObject.Instantiate(UIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject instantiatedUI = GameObject.Instantiate(UIPrefab, new Vector3(-4, (float)-0.5, 0), Quaternion.identity);
         InitialStart.Invoke(); // show full UI
         UIScript = instantiatedUI.GetComponent<UIScript>();
     }
