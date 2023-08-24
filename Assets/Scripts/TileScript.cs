@@ -20,6 +20,7 @@ public class TileScript : MonoBehaviour
     public UnityEvent MineFlagged;
     public UnityEvent BlankUnflagged;
     public UnityEvent MineUnFlagged;
+    public UnityEvent TileBeingClicked; // to make smiley face look shocked
     public bool IsGameLoss;
     public bool IsGameWon;
     public BoardScript boardScript { get; set; }

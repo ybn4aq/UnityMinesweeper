@@ -34,12 +34,6 @@ public class LogicScript : MonoBehaviour
         HideUI.AddListener(UIScript.OnHideUI);
     }
 
-    // EASY: 8 x 8, 10 mines
-    // INTERMEDIATE: 16 x 16, 40 mines
-    // EXPERT: 30 x 16, 99 mines
-    // would probably make the most sense to hard code in coordinate placements for tiles based on difficulty
-    // resize camera differently for each difficulty
-
     public void OnEasySelected()
     {
         CurDifficulty = Difficulty.Easy;
@@ -47,7 +41,6 @@ public class LogicScript : MonoBehaviour
         LCols = 8;
         LNumMines = 10;
         StartGame();
-
     }
 
     public void OnIntermediateSelected()
@@ -57,7 +50,6 @@ public class LogicScript : MonoBehaviour
         LCols = 16;
         LNumMines = 40;
         StartGame();
-
     }
 
     public void OnExpertSelected()
@@ -93,21 +85,14 @@ public class LogicScript : MonoBehaviour
 
     void StartGame() // todo: add parameter of difficulty
     {
+        GameObject boardCheck = GameObject.FindGameObjectWithTag("Board"); // check to make sure board doesn't exist already
+        if (boardCheck != null) // if board already exists
+        {
+            boardCheck.GetComponent<BoardScript>().Clear();
+            Destroy(boardCheck);
+        }
         GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript = instantiatedBoard.GetComponent<BoardScript>();
-        ActuallyStart.AddListener(BoardScript.OnActuallyStart);
-        if (CurDifficulty == Difficulty.Easy)
-        {
-
-        }
-        else if (CurDifficulty == Difficulty.Intermediate)
-        {
-
-        }
-        else // expert
-        {
-
-        }
     }
 }
 

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class UIScript : MonoBehaviour
 {
-    [SerializeField]
     private GameObject Logo;
-    [SerializeField]
     private GameObject Difficulties;
-    [SerializeField]
     private GameObject Quit;
-    [SerializeField]
     private GameObject Results;
-    [SerializeField]
     private GameObject Background;
+    private GameObject Restart;
 
     void Start()
     {
@@ -22,21 +18,13 @@ public class UIScript : MonoBehaviour
         Quit = GameObject.FindGameObjectWithTag("Quit");
         Results = GameObject.FindGameObjectWithTag("Results");
         Background = GameObject.FindGameObjectWithTag("Background");
+        Restart = GameObject.FindGameObjectWithTag("Restart");
         Results.SetActive(false);
     }
 
     void Update()
     {
 
-    }
-
-    public void OnInitialStart()
-    {
-        Logo.SetActive(false);
-        Difficulties.SetActive(false); 
-        Quit.SetActive(false);
-        Results.SetActive(false);
-        Background.SetActive(false);
     }
 
     public void OnHideUI()
@@ -46,6 +34,12 @@ public class UIScript : MonoBehaviour
         Quit.SetActive(false);
         Results.SetActive(false);
         Background.SetActive(false);
+    }
+
+    public void OnShowDifficulties()
+    {
+        Difficulties.SetActive(true);
+        Restart.SetActive(false);
     }
 
     public void OnEasySelected()
@@ -65,12 +59,16 @@ public class UIScript : MonoBehaviour
 
     public void OnGameWon()
     {
-
+        Results.SetActive(true);
+        // TODO: wait for user to click
+        Restart.SetActive(true);
     }
 
     public void OnGameLoss()
     {
-
+        Results.SetActive(true);
+        // TODO: wait for user to click
+        Restart.SetActive(true);
     }
 
 }

@@ -2,19 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BoardScript : MonoBehaviour
 {
     public GameObject tilePrefab;
-    public Tile[,] board; // m x n
-    public int rows; // m, height
-    public int cols; // n, height
-    public int numMines;    
-    private float curX;
-    private float curY;
+    public Tile[,] board;
+    public int rows;
+    public int cols;
+    public int numMines;
     private HashSet<(int, int)> mineCoords;
     public UnityEvent GameWon;
     public UnityEvent GameLoss;
@@ -23,6 +20,7 @@ public class BoardScript : MonoBehaviour
     public int NumBlanks { get; set; } = 0;
     public int FlagsPlaced { get; set; } = 0;
     public LogicScript Logic { get; set; }
+    private UIScript UIScript;
 
     void Start()
     {
@@ -30,8 +28,10 @@ public class BoardScript : MonoBehaviour
         rows = Logic.LRows;
         cols = Logic.LCols;
         numMines = Logic.LNumMines;
+        UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
         GameWon.AddListener(Logic.OnGameWon);
         GameLoss.AddListener(Logic.OnGameLoss);
+        GameLoss.AddListener(UIScript.OnGameLoss);
         MinesFlagged = 0;
         BlanksDug = 0;
         FlagsPlaced = 0;
@@ -54,13 +54,9 @@ public class BoardScript : MonoBehaviour
 
     void Update()
     {
-        // TODO: listen for UnityEvent RestartGame
         if (MinesFlagged == numMines && BlanksDug == NumBlanks)
         {
             GameWon.Invoke();
-            // TODO: have GUI listen to this
-            // TODO: have each tile be unable to be interacted with during game won
-            // TODO: reveal mines
         }
         if (Input.GetKeyUp(KeyCode.Space)) // Debug: output key variables to console
         {
@@ -105,11 +101,6 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced--;
     }
 
-    public void OnActuallyStart()
-    {
-
-    }
-
     public void Clear()
     {
         Tile cur;
@@ -145,6 +136,7 @@ public class BoardScript : MonoBehaviour
     {
         float newXRow;
         float curX;
+        float curY;
         Vector3 position;
         board = new Tile[rows, cols];
         (int, int) cur;
@@ -176,10 +168,10 @@ public class BoardScript : MonoBehaviour
                 if (tileScript != null)
                 {
                     Tile associatedTile = new Tile(isMine);
-                    board[i,j] = associatedTile; // TODO: figure out whether or not to keep Tile[,] board
+                    board[i,j] = associatedTile;
                     tileScript.AssociatedTile = associatedTile;
                     associatedTile.AssociatedTileScript = tileScript;
-                    tileScript.boardScript = this; // TODO: see if this works
+                    tileScript.boardScript = this;
                 }
                 curX += 1;
             }
