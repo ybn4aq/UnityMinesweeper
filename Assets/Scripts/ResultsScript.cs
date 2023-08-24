@@ -7,6 +7,7 @@ public class ResultsScript : MonoBehaviour
     [SerializeField]
     private Sprite[] SpriteArray;
     private SpriteRenderer Sprite;
+    private GameObject Results;
     private enum SpriteType
     {
         Win,
@@ -15,7 +16,8 @@ public class ResultsScript : MonoBehaviour
 
     void Start()
     {
-        
+        Results = GameObject.FindGameObjectWithTag("Results");
+        Results.SetActive(false); // TODO: make sure this works
     }
 
     void Update()

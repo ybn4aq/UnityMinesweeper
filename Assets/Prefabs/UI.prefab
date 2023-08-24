@@ -569,6 +569,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76005186ed031244dbcb2994f00a6cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Logo: {fileID: 0}
+  Difficulties: {fileID: 0}
+  Quit: {fileID: 0}
+  Results: {fileID: 0}
+  Background: {fileID: 0}
 --- !u!1 &6084492528957199912
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +780,7 @@ GameObject:
   - component: {fileID: 2689096060246055630}
   m_Layer: 0
   m_Name: Logo
-  m_TagString: Untagged
+  m_TagString: Logo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
