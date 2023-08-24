@@ -195,7 +195,7 @@ public class TileScript : MonoBehaviour
             for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
             {
                 cur = AssociatedTile.AdjacentTiles[i];
-                if (cur.AdjMines == 0 && !cur.IsDug && !cur.IsFlagged)
+                if (!cur.IsDug && !cur.IsFlagged)
                 {
                     cur.AssociatedTileScript.DigBlank();
                 }
