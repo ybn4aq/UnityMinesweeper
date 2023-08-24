@@ -19,19 +19,31 @@ public class LogicScript : MonoBehaviour
     public UnityEvent InitialStart;
     public GameObject UIPrefab;
     public UnityEvent ActuallyStart;
-   
+    private UIScript UIScript;
+    public int LRows { get; set; } = 0; // inefficient, but fine for now
+    public int LCols { get; set; } = 0;
+    public int LNumMines { get; set; } = 0;
+
 
     void Start()
     {
         GameObject instantiatedUI = GameObject.Instantiate(UIPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         InitialStart.Invoke(); // show full UI
-
-        StartGame(); // TODO: only start game when difficulty selection methods are invoked
+        UIScript = instantiatedUI.GetComponent<UIScript>();
     }
+
+    // EASY: 8 x 8, 10 mines
+    // INTERMEDIATE: 16 x 16, 40 mines
+    // EXPERT: 30 x 16, 99 mines
+    // would probably make the most sense to hard code in coordinate placements for tiles based on difficulty
+    // resize camera differently for each difficulty
 
     public void OnEasySelected()
     {
         CurDifficulty = Difficulty.Easy;
+        LRows = 8;
+        LCols = 8;
+        LNumMines = 10;
         StartGame();
 
     }
@@ -39,6 +51,9 @@ public class LogicScript : MonoBehaviour
     public void OnIntermediateSelected()
     {
         CurDifficulty = Difficulty.Intermediate;
+        LRows = 16;
+        LCols = 16;
+        LNumMines = 40;
         StartGame();
 
     }
@@ -46,6 +61,9 @@ public class LogicScript : MonoBehaviour
     public void OnExpertSelected()
     {
         CurDifficulty = Difficulty.Expert;
+        LRows = 30;
+        LCols = 16;
+        LNumMines = 99;
         StartGame();
     }
 

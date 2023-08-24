@@ -26,12 +26,27 @@ public class UIScript : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void OnInitialStart()
     {
-       
+
+    }
+
+    public void OnEasySelected()
+    {
+
+    }
+
+    public void OnIntermediateSelected()
+    {
+
+    }
+
+    public void OnExpertSelected()
+    {
+
     }
 
 }

@@ -8,10 +8,13 @@ public class ExpertScript : MonoBehaviour
     private BoxCollider2D Collide;
     public UnityEvent ExpertSelected;
     private LogicScript Logic;
+    private UIScript UIScript;
     void Start()
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         ExpertSelected.AddListener(Logic.OnExpertSelected);
+        UIScript = GameObject.FindGameObjectWithTag("UIScript").GetComponent<UIScript>();
+        ExpertSelected.AddListener(UIScript.OnExpertSelected);
     }
 
     void Update()

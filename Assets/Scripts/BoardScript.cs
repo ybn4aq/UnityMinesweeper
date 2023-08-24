@@ -33,6 +33,9 @@ public class BoardScript : MonoBehaviour
     void Start()
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        rows = Logic.LRows;
+        cols = Logic.LCols;
+        numMines = Logic.LNumMines;
         GameWon.AddListener(Logic.OnGameWon);
         GameLoss.AddListener(Logic.OnGameLoss);
         MinesFlagged = 0;

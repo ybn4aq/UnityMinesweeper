@@ -8,10 +8,13 @@ public class EasyScript : MonoBehaviour
     private BoxCollider2D Collide;
     public UnityEvent EasySelected;
     private LogicScript Logic;
+    private UIScript UIScript;
     void Start()
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         EasySelected.AddListener(Logic.OnEasySelected);
+        UIScript = GameObject.FindGameObjectWithTag("UIScript").GetComponent<UIScript>();
+        EasySelected.AddListener(UIScript.OnEasySelected);
     }
 
     void Update()
