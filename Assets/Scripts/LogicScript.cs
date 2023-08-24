@@ -23,19 +23,11 @@ public class LogicScript : MonoBehaviour
     {
         UI = GameObject.FindGameObjectWithTag("UI"); // TODO: make sure this works
         InitialStart.Invoke();
-        StartGame();
-        if (CurDifficulty == Difficulty.Easy)
-        {
 
-        }
-        else if (CurDifficulty == Difficulty.Intermediate)
-        {
 
-        }
-        else // expert
-        {
-            
-        }
+
+
+        StartGame(); // TODO: only start game when difficulty selection methods are invoked
     }
 
     public void OnEasySelected()

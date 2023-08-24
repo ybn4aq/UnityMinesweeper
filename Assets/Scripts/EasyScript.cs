@@ -7,9 +7,10 @@ public class EasyScript : MonoBehaviour
     [SerializeField]
     private BoxCollider2D Collide;
     public UnityEvent EasySelected;
+    private GameObject Logic;
     void Start()
     {
-        
+        Logic = GameObject.FindGameObjectWithTag("Logic");
     }
 
     void Update()
