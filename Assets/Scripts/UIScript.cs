@@ -59,15 +59,19 @@ public class UIScript : MonoBehaviour
 
     public void OnGameWon()
     {
+        Results.transform.position = new Vector3((float)2.11, (float)5.94, 0);
         Results.SetActive(true);
         // TODO: wait for user to click
+        Restart.transform.position = new Vector3((float)-0.081, (float)-3.403, 0);
         Restart.SetActive(true);
     }
 
     public void OnGameLoss()
     {
+        Results.transform.position = new Vector3((float)2.11, (float)5.94, 0);
         Results.SetActive(true);
         // TODO: wait for user to click
+        Restart.transform.position = new Vector3((float)-0.081, (float)-3.403, 0);
         Restart.SetActive(true);
     }
 

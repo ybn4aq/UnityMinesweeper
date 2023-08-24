@@ -22,4 +22,14 @@ public class RestartScript : MonoBehaviour
             ShowDifficulties.Invoke();
         }
     }
+
+    public void OnGameLoss()
+    {
+
+    }
+
+    public void OnGameWon()
+    {
+
+    }
 }

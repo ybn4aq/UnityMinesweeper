@@ -6,6 +6,7 @@ public class ResultsScript : MonoBehaviour
 {
     [SerializeField]
     private Sprite[] SpriteArray;
+    [SerializeField]
     private SpriteRenderer Sprite;
     private GameObject Results;
     private enum SpriteType
@@ -31,6 +32,7 @@ public class ResultsScript : MonoBehaviour
 
     public void OnGameLose()
     {
+        transform.position = new Vector3((float)2.11, (float)5.94, 0);
         ChangeSprite(SpriteType.Lose);
     }
 
