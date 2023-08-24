@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class IntermediateScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private BoxCollider2D Collide;
+    public UnityEvent IntermediateSelected;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

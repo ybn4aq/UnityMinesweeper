@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class ExpertScript : MonoBehaviour
+
+public class RestartScript : MonoBehaviour
 {
     [SerializeField]
     private BoxCollider2D Collide;
-    public UnityEvent ExpertSelected;
+    public UnityEvent RestartGame;
     void Start()
     {
         
