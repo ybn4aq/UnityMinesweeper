@@ -29,8 +29,6 @@ public class BoardScript : MonoBehaviour
         cols = Logic.LCols;
         numMines = Logic.LNumMines;
         UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
-        GameWon.AddListener(Logic.OnGameWon);
-        GameLoss.AddListener(Logic.OnGameLoss);
         GameLoss.AddListener(UIScript.OnGameLoss);
         MinesFlagged = 0;
         BlanksDug = 0;
@@ -103,14 +101,11 @@ public class BoardScript : MonoBehaviour
 
     public void Clear()
     {
-        Tile cur;
-        for (int i = 0; i < rows; i ++)
+        GameObject[] toDelete;
+        toDelete = GameObject.FindGameObjectsWithTag("Tile");
+        for (int i = 0 ; i < toDelete.Length; i++)
         {
-            for (int j = 0; j < cols; j ++)
-            {
-                cur = board[i, j];
-                Destroy(cur.AssociatedTileScript);
-            }
+            DestroyImmediate(toDelete[i]);
         }
     }
 

@@ -66,16 +66,6 @@ public class LogicScript : MonoBehaviour
 
     }
 
-    public void OnGameWon()
-    {
-        Debug.Log("You win!");
-    }
-
-    public void OnGameLoss()
-    {
-        Debug.Log("You lose :(");
-    }
-
     public void OnGameRestart()
     {
         BoardScript.Clear();
@@ -89,7 +79,7 @@ public class LogicScript : MonoBehaviour
         if (boardCheck != null) // if board already exists
         {
             boardCheck.GetComponent<BoardScript>().Clear();
-            Destroy(boardCheck);
+            DestroyImmediate(boardCheck);
         }
         GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript = instantiatedBoard.GetComponent<BoardScript>();
