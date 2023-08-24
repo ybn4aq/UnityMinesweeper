@@ -7,10 +7,11 @@ public class IntermediateScript : MonoBehaviour
     [SerializeField]
     private BoxCollider2D Collide;
     public UnityEvent IntermediateSelected;
-    private GameObject Logic;
+    private LogicScript Logic;
     void Start()
     {
-        Logic = GameObject.FindGameObjectWithTag("Logic");
+        Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        IntermediateSelected.AddListener(Logic.OnIntermediateSelected);
     }
 
     void Update()

@@ -7,10 +7,11 @@ public class ExpertScript : MonoBehaviour
     [SerializeField]
     private BoxCollider2D Collide;
     public UnityEvent ExpertSelected;
-    private GameObject Logic;
+    private LogicScript Logic;
     void Start()
     {
-        Logic = GameObject.FindGameObjectWithTag("Logic");
+        Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        ExpertSelected.AddListener(Logic.OnExpertSelected);
     }
 
     void Update()
