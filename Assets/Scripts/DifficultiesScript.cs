@@ -14,7 +14,6 @@ public class DifficultiesScript : MonoBehaviour
         Easy = GameObject.FindGameObjectWithTag("Easy");
         Intermediate = GameObject.FindGameObjectWithTag("Intermediate");
         Expert = GameObject.FindGameObjectWithTag("Expert");
-        
     }
     
     // idea: wait until user clicks or presses a key in order to show difficulties

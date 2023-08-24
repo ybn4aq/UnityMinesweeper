@@ -10,10 +10,13 @@ public class RestartScript : MonoBehaviour
     private BoxCollider2D Collide;
     public UnityEvent ShowDifficulties;
     private LogicScript Logic;
+    private UIScript UIScript;
     void Start()
     {
-        transform.position = new Vector3((float)-0.081, (float)-3.403, 0);
+        transform.position = new Vector3(0, -9.5f, 0);
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
+        ShowDifficulties.AddListener(UIScript.OnShowDifficulties);
     }
 
     void Update()

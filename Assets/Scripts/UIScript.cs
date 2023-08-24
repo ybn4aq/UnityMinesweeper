@@ -20,6 +20,7 @@ public class UIScript : MonoBehaviour
         Background = GameObject.FindGameObjectWithTag("Background");
         Restart = GameObject.FindGameObjectWithTag("Restart");
         Results.SetActive(false);
+        Restart.SetActive(false);
     }
 
     void Update()
