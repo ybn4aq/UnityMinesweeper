@@ -17,6 +17,7 @@ public class ResultsScript : MonoBehaviour
 
     void Start()
     {
+        transform.position = new Vector3((float)2.11, (float)5.94, 0);
         Results = GameObject.FindGameObjectWithTag("Results");
     }
 

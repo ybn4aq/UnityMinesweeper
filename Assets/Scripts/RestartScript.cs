@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,7 @@ public class RestartScript : MonoBehaviour
     private LogicScript Logic;
     void Start()
     {
+        transform.position = new Vector3((float)-0.081, (float)-3.403, 0);
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
