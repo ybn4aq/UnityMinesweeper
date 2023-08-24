@@ -24,12 +24,6 @@ public class BoardScript : MonoBehaviour
     public int FlagsPlaced { get; set; } = 0;
     public LogicScript Logic { get; set; }
 
-    // EASY: 8 x 8, 10 mines
-    // INTERMEDIATE: 16 x 16, 40 mines
-    // EXPERT: 30 x 16, 99 mines
-    // would probably make the most sense to hard code in coordinate placements for tiles based on difficulty
-    // resize camera differently for each difficulty
-
     void Start()
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
@@ -149,13 +143,29 @@ public class BoardScript : MonoBehaviour
 
     public void GenerateBoard()
     {
+        float newXRow;
+        float curX;
         Vector3 position;
         board = new Tile[rows, cols];
         (int, int) cur;
-        curY = (float)2.5;
+        if (Logic.CurDifficulty == LogicScript.Difficulty.Easy)
+        {
+            curY = (float)6;
+            newXRow = (float)-5;
+        }
+        else if (Logic.CurDifficulty ==LogicScript.Difficulty.Intermediate)
+        {
+            curY = (float)8;
+            newXRow = (float)-9;
+        }
+        else // expert
+        {
+            curY = (float)7.5;
+            newXRow = (float)-15.5;
+        }
         for (int i = 0; i < rows; i++)
         {
-            curX = (float) -1.5;
+            curX = newXRow;
             for (int j = 0; j < cols; j++)
             {
                 position = new Vector3(curX, curY, 0);
