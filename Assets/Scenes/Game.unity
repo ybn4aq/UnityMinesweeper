@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurDifficulty: 0
   Tiles: []
-  BoardPrefab: {fileID: 0}
+  BoardPrefab: {fileID: 7324568594494821092, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
   BoardScript: {fileID: 0}
   MainCamera: {fileID: 519420031}
   InitialStart:

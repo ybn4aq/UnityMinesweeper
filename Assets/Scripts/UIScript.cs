@@ -39,6 +39,15 @@ public class UIScript : MonoBehaviour
         Background.SetActive(false);
     }
 
+    public void OnHideUI()
+    {
+        Logo.SetActive(false);
+        Difficulties.SetActive(false);
+        Quit.SetActive(false);
+        Results.SetActive(false);
+        Background.SetActive(false);
+    }
+
     public void OnEasySelected()
     {
 
@@ -50,6 +59,16 @@ public class UIScript : MonoBehaviour
     }
 
     public void OnExpertSelected()
+    {
+
+    }
+
+    public void OnGameWon()
+    {
+
+    }
+
+    public void OnGameLoss()
     {
 
     }

@@ -13,7 +13,7 @@ public class IntermediateScript : MonoBehaviour
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         IntermediateSelected.AddListener(Logic.OnIntermediateSelected);
-        UIScript = GameObject.FindGameObjectWithTag("UIScript").GetComponent<UIScript>();
+        UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
         IntermediateSelected.AddListener(UIScript.OnIntermediateSelected);
     }
 

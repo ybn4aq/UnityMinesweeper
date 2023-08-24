@@ -13,7 +13,7 @@ public class EasyScript : MonoBehaviour
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         EasySelected.AddListener(Logic.OnEasySelected);
-        UIScript = GameObject.FindGameObjectWithTag("UIScript").GetComponent<UIScript>();
+        UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
         EasySelected.AddListener(UIScript.OnEasySelected);
     }
 

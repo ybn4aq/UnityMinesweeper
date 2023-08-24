@@ -20,6 +20,7 @@ public class LogicScript : MonoBehaviour
     public GameObject UIPrefab;
     public UnityEvent ActuallyStart;
     private UIScript UIScript;
+    public UnityEvent HideUI;
     public int LRows { get; set; } = 0; // inefficient, but fine for now
     public int LCols { get; set; } = 0;
     public int LNumMines { get; set; } = 0;
@@ -30,6 +31,7 @@ public class LogicScript : MonoBehaviour
         GameObject instantiatedUI = GameObject.Instantiate(UIPrefab, new Vector3(-4, (float)-0.5, 0), Quaternion.identity);
         InitialStart.Invoke(); // show full UI
         UIScript = instantiatedUI.GetComponent<UIScript>();
+        HideUI.AddListener(UIScript.OnHideUI);
     }
 
     // EASY: 8 x 8, 10 mines

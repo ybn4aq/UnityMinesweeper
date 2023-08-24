@@ -13,7 +13,7 @@ public class ExpertScript : MonoBehaviour
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         ExpertSelected.AddListener(Logic.OnExpertSelected);
-        UIScript = GameObject.FindGameObjectWithTag("UIScript").GetComponent<UIScript>();
+        UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
         ExpertSelected.AddListener(UIScript.OnExpertSelected);
     }
 
