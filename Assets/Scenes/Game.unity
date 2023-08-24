@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 116204389}
   m_Layer: 0
   m_Name: Quit
-  m_TagString: Untagged
+  m_TagString: Quit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 140362348}
   m_Layer: 0
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 371160037}
   m_Layer: 0
   m_Name: Restart
-  m_TagString: Untagged
+  m_TagString: Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 398930920}
   m_Layer: 0
   m_Name: Results
-  m_TagString: Untagged
+  m_TagString: Results
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 720000656}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 841053479}
   m_Layer: 0
   m_Name: Easy
-  m_TagString: Untagged
+  m_TagString: Easy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 980883552}
   m_Layer: 0
   m_Name: Intermediate
-  m_TagString: Untagged
+  m_TagString: Intermediate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1056,10 +1056,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e4cb04daa916d4faffe99cfab8b0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curDifficulty: 0
+  CurDifficulty: 0
   Tiles: []
-  boardPrefab: {fileID: 7324568594494821092, guid: 8e3e6adf06807004396dd083287d0b6b, type: 3}
-  boardScript: {fileID: 0}
+  BoardPrefab: {fileID: 0}
+  BoardScript: {fileID: 0}
   MainCamera: {fileID: 519420031}
   InitialStart:
     m_PersistentCalls:
@@ -1076,7 +1076,7 @@ GameObject:
   - component: {fileID: 1572384303}
   m_Layer: 0
   m_Name: Difficulties
-  m_TagString: Untagged
+  m_TagString: Difficulties
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   - component: {fileID: 1963017351}
   m_Layer: 0
   m_Name: Expert
-  m_TagString: Untagged
+  m_TagString: Expert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

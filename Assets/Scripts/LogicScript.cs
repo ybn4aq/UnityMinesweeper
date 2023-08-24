@@ -11,22 +11,24 @@ public class LogicScript : MonoBehaviour
         Intermediate,
         Expert,
     }
-    public Difficulty curDifficulty;
+    public Difficulty CurDifficulty;
     public GameObject[] Tiles;
-    public GameObject boardPrefab;
-    public BoardScript boardScript;
+    public GameObject BoardPrefab;
+    public BoardScript BoardScript;
     public Camera MainCamera;
     public UnityEvent InitialStart;
+    private GameObject UI;
 
     void Start()
     {
+        UI = GameObject.FindGameObjectWithTag("UI"); // TODO: make sure this works
         InitialStart.Invoke();
         StartGame();
-        if (curDifficulty == Difficulty.Easy)
+        if (CurDifficulty == Difficulty.Easy)
         {
 
         }
-        else if (curDifficulty == Difficulty.Intermediate)
+        else if (CurDifficulty == Difficulty.Intermediate)
         {
 
         }
@@ -34,6 +36,21 @@ public class LogicScript : MonoBehaviour
         {
             
         }
+    }
+
+    public void OnEasySelected()
+    {
+
+    }
+
+    public void OnIntermediateSelected()
+    {
+
+    }
+
+    public void OnExpertSelected()
+    {
+
     }
 
     void Update()
@@ -53,15 +70,15 @@ public class LogicScript : MonoBehaviour
 
     public void OnGameRestart()
     {
-        boardScript.Clear();
-        Destroy(boardPrefab);
+        BoardScript.Clear();
+        Destroy(BoardPrefab);
         StartGame();
     }
 
     void StartGame() // todo: add parameter of difficulty
     {
-        GameObject instantiatedBoard = Instantiate(boardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        boardScript = instantiatedBoard.GetComponent<BoardScript>();
+        GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        BoardScript = instantiatedBoard.GetComponent<BoardScript>();
     }
 }
 

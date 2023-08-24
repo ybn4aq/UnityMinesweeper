@@ -7,6 +7,16 @@ TagManager:
   - Board
   - Tile
   - Logic
+  - UI
+  - Logo
+  - Difficulties
+  - Easy
+  - Intermediate
+  - Expert
+  - Quit
+  - Results
+  - Restart
+  - Background
   layers:
   - Default
   - TransparentFX
