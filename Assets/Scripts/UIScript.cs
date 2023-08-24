@@ -12,6 +12,7 @@ public class UIScript : MonoBehaviour
 
     void Start()
     {
+
         
     }
 

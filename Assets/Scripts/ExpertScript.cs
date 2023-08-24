@@ -16,6 +16,10 @@ public class ExpertScript : MonoBehaviour
 
     void Update()
     {
-        
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButtonUp(0) && Collide.OverlapPoint(mousePosition))
+        {
+            ExpertSelected.Invoke();
+        }
     }
 }

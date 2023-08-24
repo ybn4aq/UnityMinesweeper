@@ -11,11 +11,19 @@ public class DifficultiesScript : MonoBehaviour
 
     void Start()
     {
+        Easy = GameObject.FindGameObjectWithTag("Easy");
+        Intermediate = GameObject.FindGameObjectWithTag("Intermediate");
+        Expert = GameObject.FindGameObjectWithTag("Expert");
         
     }
 
     void Update()
     {
         
+    }
+
+    public void OnShowDifficulties()
+    {
+        // TODO: Show all difficulty buttons
     }
 }
