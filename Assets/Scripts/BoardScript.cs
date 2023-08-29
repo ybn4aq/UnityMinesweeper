@@ -21,19 +21,16 @@ public class BoardScript : MonoBehaviour
     public int FlagsPlaced { get; set; } = 0;
     public LogicScript Logic { get; set; }
     private UIScript UIScript;
-    private ResultsScript Results;
 
     void Start()
     {
         Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-        // Results = GameObject.FindGameObjectWithTag("Results").GetComponent<ResultsScript>();
         rows = Logic.LRows;
         cols = Logic.LCols;
         numMines = Logic.LNumMines;
         UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
         GameLoss.AddListener(UIScript.OnGameLoss);
-        // GameLoss.AddListener(Results.OnGameLose);
-        // GameWon.AddListener(Results.OnGameWon);
+        GameWon.AddListener(UIScript.OnGameWon);
         MinesFlagged = 0;
         BlanksDug = 0;
         FlagsPlaced = 0;

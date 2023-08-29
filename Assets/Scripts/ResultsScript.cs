@@ -9,7 +9,7 @@ public class ResultsScript : MonoBehaviour
     [SerializeField]
     private SpriteRenderer Sprite;
     private GameObject Results;
-    private enum SpriteType
+    public enum SpriteType
     {
         Win,
         Lose,
@@ -36,7 +36,7 @@ public class ResultsScript : MonoBehaviour
         ChangeSprite(SpriteType.Lose);
     }
 
-    private void ChangeSprite(SpriteType desired)
+    public void ChangeSprite(SpriteType desired)
     {
         if (desired == SpriteType.Lose)
         {

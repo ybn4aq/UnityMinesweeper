@@ -61,14 +61,14 @@ public class UIScript : MonoBehaviour
     public void OnGameWon()
     {
         Results.SetActive(true);
-        // TODO: wait for user to click
+        Results.GetComponent<ResultsScript>().ChangeSprite(ResultsScript.SpriteType.Win);
         Restart.SetActive(true);
     }
 
     public void OnGameLoss()
     {
         Results.SetActive(true);
-        // TODO: wait for user to click
+        Results.GetComponent<ResultsScript>().ChangeSprite(ResultsScript.SpriteType.Lose);
         Restart.SetActive(true);
     }
 
