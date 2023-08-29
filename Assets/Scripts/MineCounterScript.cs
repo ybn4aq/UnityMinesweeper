@@ -75,54 +75,55 @@ public class MineCounterScript : MonoBehaviour
         if (digits.Length < 2)
         {
             ret[0] = SpriteType.Zero;
+            ret[1] = GetSpriteTypeFromString(digits[0].ToString());
         }
         else
         {
-            ret[0] = GetSpriteTypeFromChar(digits[0]);
+            ret[0] = GetSpriteTypeFromString(digits[0].ToString());
+            ret[1] = GetSpriteTypeFromString(digits[1].ToString());
         }
-        ret[1] = GetSpriteTypeFromChar(digits[1]);
         return ret;
     }
 
-    private SpriteType GetSpriteTypeFromChar(char digit)
+    private SpriteType GetSpriteTypeFromString(string digit)
     {
-        if (digit == '0')
+        if (digit == "0")
         {
             return SpriteType.Zero;
         }
-        else if (digit == '1')
+        else if (digit == "1")
         {
             return SpriteType.One;
         }
-        else if (digit == '2')
+        else if (digit == "2")
         {
             return SpriteType.Two;
         }
-        else if (digit == '3')
+        else if (digit == "3")
         {
             return SpriteType.Three;
         }
-        else if (digit == '4')
+        else if (digit == "4")
         {
             return SpriteType.Four;
         }
-        else if (digit == '5')
+        else if (digit == "5")
         {
             return SpriteType.Five;
         }
-        else if (digit == '6')
+        else if (digit == "6")
         {
             return SpriteType.Six;
         }
-        else if (digit == '7')
+        else if (digit == "7")
         {
             return SpriteType.Seven;
         }
-        else if (digit == '8')
+        else if (digit == "8")
         {
             return SpriteType.Eight;
         }
-        else if (digit == '9')
+        else if (digit == "9")
         {
             return SpriteType.Nine;
         }
