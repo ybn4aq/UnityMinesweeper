@@ -23,6 +23,8 @@ public class TileScript : MonoBehaviour
     public UnityEvent TileBeingClicked; // to make smiley face look shocked
     public bool IsGameLoss;
     public bool IsGameWon;
+    private float DoubleClickTime = .2f;
+    private float LastClickTime { get; set; }
     public BoardScript boardScript { get; set; }
     public enum SpriteType
     {
@@ -73,9 +75,17 @@ public class TileScript : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition))
             {
-                HandleSingleLeftClick();
+                float timeSinceLastClick = Time.time - LastClickTime;
+                if (timeSinceLastClick <= DoubleClickTime)
+                {
+                    HandleSweepClick();
+                }
+                else
+                {
+                    HandleSingleLeftClick();
+                }
+                LastClickTime = Time.time;
             }
-            // TODO: figure out double left click
         }
     }
 
