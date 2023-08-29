@@ -20,6 +20,10 @@ TagManager:
   - MineCounter
   - FirstDigitMine
   - SecondDigitMine
+  - FirstDigitTimer
+  - SecondDigitTimer
+  - ThirdDigitTimer
+  - Timer
   layers:
   - Default
   - TransparentFX

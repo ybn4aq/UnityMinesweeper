@@ -51,7 +51,7 @@ public class MineCounterScript : MonoBehaviour
         } 
     }
 
-    public void OnFlagRemoved()
+    public void OnFlagRemoved() 
     {
         FlagsLeft++;
         if (FlagsLeft <= 99 && FlagsLeft >= 0)
