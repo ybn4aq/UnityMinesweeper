@@ -44,18 +44,18 @@ public class MineCounterScript : MonoBehaviour
 
     public void OnFlagPlaced()
     {
-        if (!(FlagsLeft - 1 < 0))
+        FlagsLeft--;
+        if (FlagsLeft >= 0 && FlagsLeft <= 99)
         {
-            FlagsLeft--;
             UpdateDigitSprites();
         } 
     }
 
     public void OnFlagRemoved()
     {
-        if (!(FlagsLeft + 1 > 99))
+        FlagsLeft++;
+        if (FlagsLeft <= 99 && FlagsLeft >= 0)
         {
-            FlagsLeft++;
             UpdateDigitSprites();
         }
 
