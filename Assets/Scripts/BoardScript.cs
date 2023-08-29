@@ -21,6 +21,8 @@ public class BoardScript : MonoBehaviour
     public int FlagsPlaced { get; set; } = 0;
     public LogicScript Logic { get; set; }
     private UIScript UIScript;
+    private bool IsStarted { get; set; } = false;
+    private bool FirstCycle { get; set; } = false;
 
     void Start()
     {
