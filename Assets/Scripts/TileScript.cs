@@ -62,7 +62,12 @@ public class TileScript : MonoBehaviour
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
-            if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
+            bool spaceClick = Input.GetKey(KeyCode.Space) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
+            if (spaceClick)
+            {
+                HandleSweepClick();
+            }
+            else if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
             {
                 HandleRightClick();
             }
@@ -176,6 +181,42 @@ public class TileScript : MonoBehaviour
         }
     }
 
+    void HandleSweepClick()
+    {
+        if (AssociatedTile.IsDug)
+        {
+            Tile cur;
+            int numFlagsTouched = 0;
+            for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
+            {
+                cur = AssociatedTile.AdjacentTiles[i];
+                if (cur.IsFlagged)
+                {
+                    numFlagsTouched++;
+                }
+            }
+            if (numFlagsTouched == AssociatedTile.AdjMines)
+            {
+                for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
+                {
+                    cur = AssociatedTile.AdjacentTiles[i];
+                    if (!cur.IsDug && !cur.IsFlagged)
+                    {
+                        if (!cur.IsMine)
+                        {
+                            cur.AssociatedTileScript.DigBlank();
+                        }
+                        else
+                        {
+                            cur.AssociatedTileScript.DigMine(); // I realize this is a bizarre way to implement this. There should just be a Dig() function
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
     void DigMine()
     {
         MineDug.Invoke();
@@ -189,7 +230,7 @@ public class TileScript : MonoBehaviour
         AssociatedTile.IsDug = true;
         ChangeSprite(GetBlankSpriteChange());
         // if 0 tile, mine all adjacent 0 tiles
-        if (AssociatedTile.AdjMines == 0)
+        if (AssociatedTile.AdjMines == 0 && !AssociatedTile.IsMine)
         {
             Tile cur;
             for (int i = 0; i < AssociatedTile.AdjacentTiles.Count; i++)
@@ -245,12 +286,6 @@ public class TileScript : MonoBehaviour
             BlankUnflagged.Invoke();
         }
     }
-
-    void HandleDoubleLeftClick()
-    {
-        Debug.Log("Double left click!");
-    }
-
     SpriteType GetBlankSpriteChange()
     {
         if (AssociatedTile.AdjMines == 0)

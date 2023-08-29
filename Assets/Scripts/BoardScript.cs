@@ -57,14 +57,6 @@ public class BoardScript : MonoBehaviour
         {
             GameWon.Invoke();
         }
-        if (Input.GetKeyUp(KeyCode.Space)) // Debug: output key variables to console
-        {
-            Debug.Log("Mines Flagged: " + MinesFlagged.ToString());
-            Debug.Log("Blanks Dug: "+BlanksDug.ToString());
-            Debug.Log("Number of Blanks: " + NumBlanks.ToString());
-            Debug.Log("Flags Placed: "+FlagsPlaced.ToString());
-            Debug.Log("Number of mines: "+numMines.ToString());
-        }
     }
 
     public void OnMineDug()

@@ -284,6 +284,9 @@ MonoBehaviour:
   ActuallyStart:
     m_PersistentCalls:
       m_Calls: []
+  HideUI:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
