@@ -284,6 +284,7 @@ MonoBehaviour:
   ActuallyStart:
     m_PersistentCalls:
       m_Calls: []
+  MineCounterPrefab: {fileID: 5887556704703967563, guid: f0665574b97b7fb4a9bf022170c4ad9d, type: 3}
   HideUI:
     m_PersistentCalls:
       m_Calls: []

@@ -20,6 +20,8 @@ public class LogicScript : MonoBehaviour
     public GameObject UIPrefab;
     public UnityEvent ActuallyStart;
     private UIScript UIScript;
+    [SerializeField]
+    private GameObject MineCounterPrefab;
     public UnityEvent HideUI;
     public int LRows { get; set; } = 0; // inefficient, but fine for now
     public int LCols { get; set; } = 0;
@@ -73,16 +75,33 @@ public class LogicScript : MonoBehaviour
         StartGame();
     }
 
-    void StartGame() // todo: add parameter of difficulty
+    void StartGame()
     {
+        GameObject mineCounterCheck = GameObject.FindGameObjectWithTag("MineCounter");
         GameObject boardCheck = GameObject.FindGameObjectWithTag("Board"); // check to make sure board doesn't exist already
         if (boardCheck != null) // if board already exists
         {
             boardCheck.GetComponent<BoardScript>().Clear();
             DestroyImmediate(boardCheck);
         }
+        if (mineCounterCheck != null)
+        {
+            DestroyImmediate(mineCounterCheck);
+        }
         GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript = instantiatedBoard.GetComponent<BoardScript>();
+        if (CurDifficulty == Difficulty.Easy)
+        {
+            GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(1.1f, 7.35f, 0), Quaternion.identity);
+        }
+        else if (CurDifficulty == Difficulty.Intermediate)
+        {
+            GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(5.15f, 9.35f, 0), Quaternion.identity);
+        }
+        else if (CurDifficulty == Difficulty.Expert)
+        {
+            GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(12.65f, 8.85f, 0), Quaternion.identity);
+        }
     }
 }
 

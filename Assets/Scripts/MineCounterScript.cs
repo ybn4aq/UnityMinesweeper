@@ -34,6 +34,7 @@ public class MineCounterScript : MonoBehaviour
         FirstDigitLogic = FirstDigit.GetComponent<FirstDigitScript>();
         SecondDigitLogic = SecondDigit.GetComponent<SecondDigitScript>();
         FlagsLeft = Logic.LNumMines;
+        UpdateDigitSprites();
     }
 
     void Update()
