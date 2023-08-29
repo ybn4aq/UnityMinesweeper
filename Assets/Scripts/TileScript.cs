@@ -14,6 +14,7 @@ public class TileScript : MonoBehaviour
     public BoxCollider2D collide;
     public Sprite[] spriteArray;
     public Tile AssociatedTile;
+    private MineCounterScript MineCounter;
     public UnityEvent BlankDug;
     public UnityEvent MineDug;
     public UnityEvent BlankFlagged;
@@ -48,6 +49,7 @@ public class TileScript : MonoBehaviour
     {
         ChangeSprite(SpriteType.Unmined);
         IsGameWon = false;
+        MineCounter = GameObject.FindGameObjectWithTag("MineCounter").GetComponent<MineCounterScript>();
         IsGameLoss = false;
         BlankDug.AddListener(boardScript.OnBlankDug);
         MineDug.AddListener(boardScript.OnMineDug);
@@ -55,6 +57,10 @@ public class TileScript : MonoBehaviour
         MineFlagged.AddListener (boardScript.OnMineFlagged);
         BlankUnflagged.AddListener(boardScript.OnBlankUnFlagged);
         MineUnFlagged.AddListener(boardScript.OnMineUnFlagged);
+        BlankFlagged.AddListener(MineCounter.OnFlagPlaced);
+        MineFlagged.AddListener(MineCounter.OnFlagPlaced);
+        MineUnFlagged.AddListener(MineCounter.OnFlagRemoved);
+        BlankUnflagged.AddListener(MineCounter.OnFlagRemoved);
         // TODO: remove listeners later
     }
 

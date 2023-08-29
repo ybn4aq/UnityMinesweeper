@@ -17,6 +17,9 @@ TagManager:
   - Results
   - Restart
   - Background
+  - MineCounter
+  - FirstDigitMine
+  - SecondDigitMine
   layers:
   - Default
   - TransparentFX
