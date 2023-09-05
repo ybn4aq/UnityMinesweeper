@@ -10,6 +10,8 @@ public class TimerScript : MonoBehaviour
     private float Timer = 0f;
     private const float WaitTime = 1.0f;
     private int CurTime = 0;
+    private LogicScript Logic;
+    private bool RunTimer { get; set; } = true;
     public enum SpriteType
     {
         Zero,
@@ -30,17 +32,37 @@ public class TimerScript : MonoBehaviour
         FirstDigit = GameObject.FindGameObjectWithTag("FirstDigitTimer").GetComponent<FirstDigitTimerScript>();
         SecondDigit = GameObject.FindGameObjectWithTag("SecondDigitTimer").GetComponent<SecondDigitTimerScript>();
         ThirdDigit = GameObject.FindGameObjectWithTag("ThirdDigitTimer").GetComponent<ThirdDigitTimerScript>();
+        Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        OrientFromDifficulty(Logic.CurDifficulty);
     }
 
     void Update()
     {
-        Timer += Time.deltaTime;
-        if (Timer >= WaitTime && CurTime < 999)
+        if (RunTimer)
         {
-            IncrementTime();
-            Timer = 0f;
+            Timer += Time.deltaTime;
+            if (Timer >= WaitTime && CurTime < 999)
+            {
+                IncrementTime();
+                Timer = 0f;
+            }
         }
-        
+    }
+
+    void OrientFromDifficulty(LogicScript.Difficulty diff)
+    {
+        if (diff == LogicScript.Difficulty.Easy)
+        {
+
+        }
+        else if (diff  == LogicScript.Difficulty.Intermediate)
+        {
+
+        }
+        else // expert
+        {
+
+        }
     }
 
     void IncrementTime()
@@ -82,6 +104,16 @@ public class TimerScript : MonoBehaviour
             ret[0] = GetSpriteTypeFromString(digits[0].ToString());
         }
         return ret;
+    }
+
+    public void OnGameWon() // TODO: add listener
+    {
+        RunTimer = false;
+    }
+
+    public void OnGameLoss()
+    {
+        RunTimer = false;
     }
     private SpriteType GetSpriteTypeFromString(string digit)
     {

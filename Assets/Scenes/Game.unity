@@ -288,6 +288,7 @@ MonoBehaviour:
   HideUI:
     m_PersistentCalls:
       m_Calls: []
+  TimerPrefab: {fileID: 517015006843195547, guid: cf1f5fbd028faf9438388caa424cbe31, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class BoardScript : MonoBehaviour
     public int FlagsPlaced { get; set; } = 0;
     public LogicScript Logic { get; set; }
     private UIScript UIScript;
+    private TimerScript Timer;
     private bool IsStarted { get; set; } = false; // TODO: guarantee dig blank at first
     private bool FirstCycle { get; set; } = false;
 
@@ -31,6 +32,9 @@ public class BoardScript : MonoBehaviour
         cols = Logic.LCols;
         numMines = Logic.LNumMines;
         UIScript = GameObject.FindGameObjectWithTag("UI").GetComponent<UIScript>();
+        Timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        GameLoss.AddListener(Timer.OnGameLoss);
+        GameWon.AddListener(Timer.OnGameWon);
         GameLoss.AddListener(UIScript.OnGameLoss);
         GameWon.AddListener(UIScript.OnGameWon);
         MinesFlagged = 0;
