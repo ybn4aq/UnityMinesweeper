@@ -74,15 +74,14 @@ public class TimerScript : MonoBehaviour
         else if (digits.Length == 2)
         {
             ret[2] = SpriteType.Zero;
-            ret[1] = GetSpriteTypeFromString(digits[1].ToString());
-            ret[0] = GetSpriteTypeFromString(digits[0].ToString());
-
+            ret[1] = GetSpriteTypeFromString(digits[0].ToString());
+            ret[0] = GetSpriteTypeFromString(digits[1].ToString());
         }
         else // digits.Length == 3
         {
-            ret[2] = GetSpriteTypeFromString(digits[2].ToString());
+            ret[2] = GetSpriteTypeFromString(digits[0].ToString());
             ret[1] = GetSpriteTypeFromString(digits[1].ToString());
-            ret[0] = GetSpriteTypeFromString(digits[0].ToString());
+            ret[0] = GetSpriteTypeFromString(digits[2].ToString());
         }
         return ret;
     }
