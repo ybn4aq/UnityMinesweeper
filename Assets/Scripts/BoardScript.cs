@@ -22,6 +22,7 @@ public class BoardScript : MonoBehaviour
     public LogicScript Logic { get; set; }
     private UIScript UIScript;
     private TimerScript Timer;
+    private SmileyScript Smiley;
     private bool IsStarted { get; set; } = false; // TODO: guarantee dig blank at first
     private bool FirstCycle { get; set; } = false;
 
@@ -44,6 +45,9 @@ public class BoardScript : MonoBehaviour
         mineCoords = GetMineCoords();
         GenerateBoard();
         PopulateAdjTiles();
+        Smiley = GameObject.FindGameObjectWithTag("Smiley").GetComponent<SmileyScript>();
+        GameWon.AddListener(Smiley.OnGameWon);
+        GameLoss.AddListener(Smiley.OnGameLoss);
         // adding listeners to each tile
         Tile cur;
         for (int i = 0; i < rows; i++)

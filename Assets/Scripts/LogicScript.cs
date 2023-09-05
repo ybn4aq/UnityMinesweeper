@@ -25,6 +25,8 @@ public class LogicScript : MonoBehaviour
     public UnityEvent HideUI;
     [SerializeField]
     private GameObject TimerPrefab;
+    [SerializeField]
+    private GameObject SmileyPrefab;
     public int LRows { get; set; } = 0; // inefficient, but fine for now
     public int LCols { get; set; } = 0;
     public int LNumMines { get; set; } = 0;
@@ -79,6 +81,7 @@ public class LogicScript : MonoBehaviour
 
     void StartGame()
     {
+        GameObject smileyCheck = GameObject.FindGameObjectWithTag("Smiley");
         GameObject mineCounterCheck = GameObject.FindGameObjectWithTag("MineCounter");
         GameObject boardCheck = GameObject.FindGameObjectWithTag("Board"); // check to make sure board doesn't exist already
         GameObject timerCheck = GameObject.FindGameObjectWithTag("Timer");
@@ -95,23 +98,30 @@ public class LogicScript : MonoBehaviour
         {
             DestroyImmediate(timerCheck);
         }
+        if (smileyCheck != null)
+        {
+            DestroyImmediate(smileyCheck);
+        }
         GameObject instantiatedBoard = Instantiate(BoardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         BoardScript = instantiatedBoard.GetComponent<BoardScript>();
         if (CurDifficulty == Difficulty.Easy)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(1.1f, 7.35f, 0), Quaternion.identity);
             GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-5.45f, 7.35f, 0), Quaternion.identity);
+            GameObject instantiatedSmiley = Instantiate(SmileyPrefab, new Vector3(-1.3f, 6.95f, 0), Quaternion.identity);
 
         }
         else if (CurDifficulty == Difficulty.Intermediate)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(5.15f, 9.35f, 0), Quaternion.identity);
             GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-9.5f, 9.35f, 0), Quaternion.identity);
+            GameObject instantiatedSmiley = Instantiate(SmileyPrefab, new Vector3(-1.5f, 9f, 0), Quaternion.identity);
         }
         else if (CurDifficulty == Difficulty.Expert)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(12.65f, 8.85f, 0), Quaternion.identity);
             GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-16f, 8.85f, 0), Quaternion.identity);
+            GameObject instantiatedSmiley = Instantiate(SmileyPrefab, new Vector3(-0.5f, 8.5f, 0), Quaternion.identity);
         }
     }
 }

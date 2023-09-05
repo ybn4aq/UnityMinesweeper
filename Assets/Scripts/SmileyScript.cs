@@ -10,6 +10,8 @@ public class SmileyScript : MonoBehaviour
     public UnityEvent GameRestart;
     [SerializeField]
     private BoxCollider2D Collide;
+    private bool IsActive = true;
+    private LogicScript Logic;
     private enum SpriteType
     {
         Lose,
@@ -22,6 +24,8 @@ public class SmileyScript : MonoBehaviour
 
     {
         ChangeSprite(SpriteType.NeutralUnpressed);
+        Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        GameRestart.AddListener(Logic.OnGameRestart);
     }
 
     void Update()
@@ -30,7 +34,7 @@ public class SmileyScript : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0) && Collide.OverlapPoint(mousePosition))
         {
-            Debug.Log("test");
+            GameRestart.Invoke();
             ChangeSprite(SpriteType.NeutralPressed);
         }
         if (Input.GetMouseButtonUp(0) && Collide.OverlapPoint(mousePosition))
@@ -72,9 +76,11 @@ public class SmileyScript : MonoBehaviour
     public void OnGameWon()
     {
         ChangeSprite(SpriteType.Win);
+        IsActive = false;
     }
     public void OnGameLoss()
     {
         ChangeSprite(SpriteType.Lose);
+        IsActive = false;
     }
 }

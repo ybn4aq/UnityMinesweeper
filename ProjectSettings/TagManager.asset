@@ -24,6 +24,7 @@ TagManager:
   - SecondDigitTimer
   - ThirdDigitTimer
   - Timer
+  - Smiley
   layers:
   - Default
   - TransparentFX
