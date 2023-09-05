@@ -74,13 +74,12 @@ public class LogicScript : MonoBehaviour
 
     public void OnGameRestart()
     {
-        BoardScript.Clear();
-        DestroyImmediate(BoardPrefab);
         StartGame();
     }
 
     void StartGame()
     {
+        HideUI.Invoke();
         GameObject smileyCheck = GameObject.FindGameObjectWithTag("Smiley");
         GameObject mineCounterCheck = GameObject.FindGameObjectWithTag("MineCounter");
         GameObject boardCheck = GameObject.FindGameObjectWithTag("Board"); // check to make sure board doesn't exist already

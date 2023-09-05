@@ -35,6 +35,7 @@ public class UIScript : MonoBehaviour
         Quit.SetActive(false);
         Results.SetActive(false);
         Background.SetActive(false);
+        Restart.SetActive(false);
     }
 
     public void OnShowDifficulties()

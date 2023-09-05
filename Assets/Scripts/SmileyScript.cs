@@ -34,7 +34,6 @@ public class SmileyScript : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0) && Collide.OverlapPoint(mousePosition))
         {
-            GameRestart.Invoke();
             ChangeSprite(SpriteType.NeutralPressed);
         }
         if (Input.GetMouseButtonUp(0) && Collide.OverlapPoint(mousePosition))
