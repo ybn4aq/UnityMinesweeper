@@ -26,6 +26,7 @@ public class BoardScript : MonoBehaviour
     private bool IsStarted { get; set; } = false; // TODO: guarantee dig blank at first
     public TileScript FirstTile { get; set; }
     public (int, int) FirstTileCoords { get; set; }
+    public List<Tile> IllegalMinePlacements { get; set; }
 
 
     void Start()
@@ -70,21 +71,11 @@ public class BoardScript : MonoBehaviour
         }
     }
 
-    public void OnFirstTileClicked()
-    {
-        IsStarted = true;
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-
-            }
-        }
-    }
-
     public void PlaceMines(TileScript firstTile)
     {
         bool flag = false;
+        int firstTileX = 0;
+        int firstTileY = 0; 
         Tile cur;
         IsStarted = true;
         for (int i = 0; i < rows; i++) // finding tile
@@ -99,16 +90,26 @@ public class BoardScript : MonoBehaviour
                 if (cur.AssociatedTileScript == firstTile)
                 {
                     FirstTileCoords = (i, j);
+                    firstTileY = j;
+                    firstTileX = i;
                     flag = true;
                     break;
                 }
             }
         }
-
-        
-
-
-        // EVENTUALLY: DIG FIRST TILE
+        int curRow;
+        int curCol;
+        IllegalMinePlacements = GetAdjTiles(firstTileX, firstTileY);
+        IllegalMinePlacements.Add(firstTile.AssociatedTile);
+        HashSet<(int, int)> mineCoords = GetMineCoords();
+        foreach (var item in mineCoords)
+        {
+            curRow = item.Item1;
+            curCol = item.Item2; // TODO: make sure this works
+            board[curRow, curCol].IsMine = true;
+        }
+        PopulateFilledAdjTiles();
+        FirstTile.HandleSingleLeftClick(); // finally, dig the first tile clicked
     }
 
     public void OnMineDug()
@@ -164,12 +165,26 @@ public class BoardScript : MonoBehaviour
         {
             rRow = ran.Next(0, rows - 1);
             rCol = ran.Next(0, cols - 1);
-            if (!cache.Contains((rRow, rCol)) && (rRow, rCol) != FirstTileCoords)
+            if (!cache.Contains((rRow, rCol)) && CheckValidMineIdx(rRow, rCol)) // TOOD: and coords are not in IllegalMinePlacements
             {
                 cache.Add((rRow, rCol));
             }
         }
         return cache;
+    }
+
+    private bool CheckValidMineIdx(int row, int col)
+    {
+        Tile cur;
+        for (int i = 0; i < IllegalMinePlacements.Count; i++)
+        {
+            cur = IllegalMinePlacements[i];
+            if (cur == board[row, col])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void GenerateBlankBoard()
@@ -216,9 +231,25 @@ public class BoardScript : MonoBehaviour
             }
             curY -= 1;
         }
+        PopulateBlankAdjTiles();
     }
 
-    private void PopulateAdjTiles()
+    private void PopulateBlankAdjTiles()
+    {
+        Tile cur;
+        List<Tile> adjTiles;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                cur = board[i, j];
+                adjTiles = GetAdjTiles(i, j);
+                cur.AdjacentTiles = adjTiles; // Populating List<Tile> AdjacentTiles field for each Tile
+            }
+        }
+    }
+
+    private void PopulateFilledAdjTiles()
     {
         Tile cur;
         List<Tile> adjTiles;
@@ -231,8 +262,8 @@ public class BoardScript : MonoBehaviour
                 {
                     continue;
                 }
-                adjTiles = GetAdjTiles(i, j);
-                cur.AdjacentTiles = adjTiles; // Populating List<Tile> AdjacentTiles field for each Tile
+                adjTiles = cur.AdjacentTiles;
+                cur.AdjacentTiles = adjTiles;
                 for (int k = 0; k < adjTiles.Count; k++)
                 {
                     if (adjTiles[k].IsMine)

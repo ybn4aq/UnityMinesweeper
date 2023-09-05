@@ -28,7 +28,6 @@ public class TileScript : MonoBehaviour
     private float LastClickTime { get; set; }
     public BoardScript boardScript { get; set; }
     private bool FirstDig { get; set; } = false;
-    public UnityEvent FirstTileClicked;
     public enum SpriteType
     {
         Unmined,
@@ -64,7 +63,6 @@ public class TileScript : MonoBehaviour
         MineFlagged.AddListener(MineCounter.OnFlagPlaced);
         MineUnFlagged.AddListener(MineCounter.OnFlagRemoved);
         BlankUnflagged.AddListener(MineCounter.OnFlagRemoved);
-        FirstTileClicked.AddListener(boardScript.OnFirstTileClicked);
     }
 
     void Update()
@@ -193,7 +191,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
-    void HandleSingleLeftClick()
+    public void HandleSingleLeftClick()
     {
         if (!AssociatedTile.IsDug && !AssociatedTile.IsFlagged) // can't dig a tile that's flagged
         {
