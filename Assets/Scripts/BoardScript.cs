@@ -24,7 +24,9 @@ public class BoardScript : MonoBehaviour
     private TimerScript Timer;
     private SmileyScript Smiley;
     private bool IsStarted { get; set; } = false; // TODO: guarantee dig blank at first
-    private bool FirstCycle { get; set; } = false;
+    public TileScript FirstTile { get; set; }
+    public (int, int) FirstTileCoords { get; set; }
+
 
     void Start()
     {
@@ -43,8 +45,7 @@ public class BoardScript : MonoBehaviour
         FlagsPlaced = 0;
         NumBlanks = (rows * cols) - numMines;
         mineCoords = GetMineCoords();
-        GenerateBoard();
-        PopulateAdjTiles();
+        GenerateBlankBoard();
         Smiley = GameObject.FindGameObjectWithTag("Smiley").GetComponent<SmileyScript>();
         GameWon.AddListener(Smiley.OnGameWon);
         GameLoss.AddListener(Smiley.OnGameLoss);
@@ -67,6 +68,47 @@ public class BoardScript : MonoBehaviour
         {
             GameWon.Invoke();
         }
+    }
+
+    public void OnFirstTileClicked()
+    {
+        IsStarted = true;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+
+            }
+        }
+    }
+
+    public void PlaceMines(TileScript firstTile)
+    {
+        bool flag = false;
+        Tile cur;
+        IsStarted = true;
+        for (int i = 0; i < rows; i++) // finding tile
+        {
+            if (flag)
+            {
+                break;
+            }
+            for (int j = 0; j < cols; j++)
+            {
+                cur = board[i, j];
+                if (cur.AssociatedTileScript == firstTile)
+                {
+                    FirstTileCoords = (i, j);
+                    flag = true;
+                    break;
+                }
+            }
+        }
+
+        
+
+
+        // EVENTUALLY: DIG FIRST TILE
     }
 
     public void OnMineDug()
@@ -122,7 +164,7 @@ public class BoardScript : MonoBehaviour
         {
             rRow = ran.Next(0, rows - 1);
             rCol = ran.Next(0, cols - 1);
-            if (!cache.Contains((rRow, rCol)))
+            if (!cache.Contains((rRow, rCol)) && (rRow, rCol) != FirstTileCoords)
             {
                 cache.Add((rRow, rCol));
             }
@@ -130,7 +172,7 @@ public class BoardScript : MonoBehaviour
         return cache;
     }
 
-    public void GenerateBoard()
+    public void GenerateBlankBoard()
     {
         float newXRow;
         float curX;
@@ -140,18 +182,18 @@ public class BoardScript : MonoBehaviour
         (int, int) cur;
         if (Logic.CurDifficulty == LogicScript.Difficulty.Easy)
         {
-            curY = (float)6;
-            newXRow = (float)-5;
+            curY = 6f;
+            newXRow = -5f;
         }
         else if (Logic.CurDifficulty ==LogicScript.Difficulty.Intermediate)
         {
-            curY = (float)8;
-            newXRow = (float)-9;
+            curY = 8f;
+            newXRow = -9f;
         }
         else // expert
         {
-            curY = (float)7.5;
-            newXRow = (float)-15.5;
+            curY = 7.5f;
+            newXRow = -15.5f;
         }
         for (int i = 0; i < rows; i++)
         {
@@ -160,12 +202,11 @@ public class BoardScript : MonoBehaviour
             {
                 position = new Vector3(curX, curY, 0);
                 cur = (i, j);
-                bool isMine = mineCoords.Contains(cur);
                 GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
                 TileScript tileScript = tileObject.GetComponent<TileScript>();
                 if (tileScript != null)
                 {
-                    Tile associatedTile = new Tile(isMine);
+                    Tile associatedTile = new Tile(false); // no mines at first
                     board[i,j] = associatedTile;
                     tileScript.AssociatedTile = associatedTile;
                     associatedTile.AssociatedTileScript = tileScript;
