@@ -45,7 +45,6 @@ public class BoardScript : MonoBehaviour
         BlanksDug = 0;
         FlagsPlaced = 0;
         NumBlanks = (rows * cols) - numMines;
-        mineCoords = GetMineCoords();
         GenerateBlankBoard();
         Smiley = GameObject.FindGameObjectWithTag("Smiley").GetComponent<SmileyScript>();
         GameWon.AddListener(Smiley.OnGameWon);
@@ -194,7 +193,6 @@ public class BoardScript : MonoBehaviour
         float curY;
         Vector3 position;
         board = new Tile[rows, cols];
-        (int, int) cur;
         if (Logic.CurDifficulty == LogicScript.Difficulty.Easy)
         {
             curY = 6f;
@@ -216,7 +214,6 @@ public class BoardScript : MonoBehaviour
             for (int j = 0; j < cols; j++)
             {
                 position = new Vector3(curX, curY, 0);
-                cur = (i, j);
                 GameObject tileObject = Instantiate(tilePrefab, position, Quaternion.identity);
                 TileScript tileScript = tileObject.GetComponent<TileScript>();
                 if (tileScript != null)
