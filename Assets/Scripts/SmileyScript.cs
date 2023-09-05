@@ -10,7 +10,6 @@ public class SmileyScript : MonoBehaviour
     public UnityEvent GameRestart;
     [SerializeField]
     private BoxCollider2D Collide;
-    private bool IsActive = true;
     private LogicScript Logic;
     private enum SpriteType
     {
@@ -75,11 +74,9 @@ public class SmileyScript : MonoBehaviour
     public void OnGameWon()
     {
         ChangeSprite(SpriteType.Win);
-        IsActive = false;
     }
     public void OnGameLoss()
     {
         ChangeSprite(SpriteType.Lose);
-        IsActive = false;
     }
 }

@@ -27,6 +27,7 @@ public class LogicScript : MonoBehaviour
     private GameObject TimerPrefab;
     [SerializeField]
     private GameObject SmileyPrefab;
+    public TileScript FirstClick { get; set; }
     public int LRows { get; set; } = 0; // inefficient, but fine for now
     public int LCols { get; set; } = 0;
     public int LNumMines { get; set; } = 0;

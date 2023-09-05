@@ -27,6 +27,7 @@ public class TileScript : MonoBehaviour
     private float DoubleClickTime = .2f;
     private float LastClickTime { get; set; }
     public BoardScript boardScript { get; set; }
+    public bool FirstDig { get; set; } = false;
     public enum SpriteType
     {
         Unmined,
@@ -62,36 +63,45 @@ public class TileScript : MonoBehaviour
         MineFlagged.AddListener(MineCounter.OnFlagPlaced);
         MineUnFlagged.AddListener(MineCounter.OnFlagRemoved);
         BlankUnflagged.AddListener(MineCounter.OnFlagRemoved);
-        // TODO: remove listeners later
     }
 
     void Update()
     {
-        if (!IsGameLoss && !IsGameWon) // only handle tile interactions during gameplay
-        {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
-            bool spaceClick = Input.GetKey(KeyCode.Space) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
-            if (spaceClick)
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (FirstDig) {
+            if (!IsGameLoss && !IsGameWon) // only handle tile interactions during gameplay
             {
-                HandleSweepClick();
-            }
-            else if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
-            {
-                HandleRightClick();
-            }
-            else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition))
-            {
-                float timeSinceLastClick = Time.time - LastClickTime;
-                if (timeSinceLastClick <= DoubleClickTime)
+                bool shiftClick = Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
+                bool spaceClick = Input.GetKey(KeyCode.Space) && Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition);
+                if (spaceClick)
                 {
                     HandleSweepClick();
                 }
-                else
+                else if ((Input.GetMouseButtonUp(1) && collide.OverlapPoint(mousePosition)) || shiftClick)
                 {
-                    HandleSingleLeftClick();
+                    HandleRightClick();
                 }
-                LastClickTime = Time.time;
+                else if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition))
+                {
+                    float timeSinceLastClick = Time.time - LastClickTime;
+                    if (timeSinceLastClick <= DoubleClickTime)
+                    {
+                        HandleSweepClick();
+                    }
+                    else
+                    {
+                        HandleSingleLeftClick();
+                    }
+                    LastClickTime = Time.time;
+                }
+            }
+        }
+        else // TODO: register that user clicked here, make it blank, and then generate board around this tile being blank
+        {
+            if (Input.GetMouseButtonUp(0) && collide.OverlapPoint(mousePosition))
+            {
+                boardScript.FirstTile = this; // TODO: need to figure out way to tell which gameobject this is for BoardScript
+                boardScript.PlaceMines(this);
             }
         }
     }
@@ -115,12 +125,6 @@ public class TileScript : MonoBehaviour
     public void OnGameWon()
     {
         IsGameWon = true;
-    }
-
-    public void OnGameRestart() // may not even be necessary, i think all tile prefabs are destroyed
-    {
-        IsGameLoss = false;
-        IsGameWon = false;
     }
 
     public void ChangeSprite(SpriteType desired)
@@ -187,7 +191,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
-    void HandleSingleLeftClick()
+    public void HandleSingleLeftClick()
     {
         if (!AssociatedTile.IsDug && !AssociatedTile.IsFlagged) // can't dig a tile that's flagged
         {
