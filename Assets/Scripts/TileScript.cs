@@ -27,7 +27,7 @@ public class TileScript : MonoBehaviour
     private float DoubleClickTime = .2f;
     private float LastClickTime { get; set; }
     public BoardScript boardScript { get; set; }
-    private bool FirstDig { get; set; } = false;
+    public bool FirstDig { get; set; } = false;
     public enum SpriteType
     {
         Unmined,

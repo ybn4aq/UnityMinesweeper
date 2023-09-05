@@ -109,6 +109,13 @@ public class BoardScript : MonoBehaviour
         }
         PopulateFilledAdjTiles();
         FirstTile.HandleSingleLeftClick(); // finally, dig the first tile clicked
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j< cols; j++)
+            {
+                board[i, j].AssociatedTileScript.FirstDig = true;
+            }
+        }
     }
 
     public void OnMineDug()
