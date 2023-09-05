@@ -24,11 +24,18 @@ public class TimerScript : MonoBehaviour
    
     void Start()
     {
-        
+        FirstDigit = GameObject.FindGameObjectWithTag("FirstDigitTimer").GetComponent<FirstDigitTimerScript>();
+        SecondDigit = GameObject.FindGameObjectWithTag("SecondDigitTimer").GetComponent<SecondDigitTimerScript>();
+        ThirdDigit = GameObject.FindGameObjectWithTag("ThirdDigitTimer").GetComponent<ThirdDigitTimerScript>();
     }
 
     void Update()
     {
-        
+
+    }
+
+    void IncrementTime()
+    {
+
     }
 }

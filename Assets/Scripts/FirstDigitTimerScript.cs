@@ -12,6 +12,7 @@ public class FirstDigitTimerScript : MonoBehaviour
     void Start()
     {
         Timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        ChangeSprite(TimerScript.SpriteType.Zero);
     }
 
     void Update()
@@ -21,43 +22,43 @@ public class FirstDigitTimerScript : MonoBehaviour
 
     public void ChangeSprite(TimerScript.SpriteType desired)
     {
-        if (desired == SpriteType.Zero)
+        if (desired == TimerScript.SpriteType.Zero)
         {
             Sprite.sprite = SpriteArray[0];
         }
-        else if (desired == SpriteType.One)
+        else if (desired == TimerScript.SpriteType.One)
         {
             Sprite.sprite = SpriteArray[1];
         }
-        else if (desired == SpriteType.Two)
+        else if (desired == TimerScript.SpriteType.Two)
         {
             Sprite.sprite = SpriteArray[2];
         }
-        else if (desired == SpriteType.Three)
+        else if (desired == TimerScript.SpriteType.Three)
         {
             Sprite.sprite = SpriteArray[3];
         }
-        else if (desired == SpriteType.Four)
+        else if (desired == TimerScript.SpriteType.Four)
         {
             Sprite.sprite = SpriteArray[4];
         }
-        else if (desired == SpriteType.Five)
+        else if (desired == TimerScript.SpriteType.Five)
         {
             Sprite.sprite = SpriteArray[5];
         }
-        else if (desired == SpriteType.Six)
+        else if (desired == TimerScript.SpriteType.Six)
         {
             Sprite.sprite = SpriteArray[6];
         }
-        else if (desired == SpriteType.Seven)
+        else if (desired == TimerScript.SpriteType.Seven)
         {
             Sprite.sprite = SpriteArray[7];
         }
-        else if (desired == SpriteType.Eight)
+        else if (desired == TimerScript.SpriteType.Eight)
         {
             Sprite.sprite = SpriteArray[8];
         }
-        else if (desired == SpriteType.Nine)
+        else if (desired == TimerScript.SpriteType.Nine)
         {
             Sprite.sprite = SpriteArray[9];
         }

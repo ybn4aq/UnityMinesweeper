@@ -43,6 +43,7 @@ public class TileScript : MonoBehaviour
         Flag,
         FalseMine,
         MineRed,
+        Question,
     }
 
     void Start()
@@ -179,6 +180,10 @@ public class TileScript : MonoBehaviour
         else if (desired == SpriteType.MineRed)
         {
             sprite.sprite = spriteArray[13];
+        }
+        else if (desired == SpriteType.Question)
+        {
+            sprite.sprite = spriteArray[14];
         }
     }
 

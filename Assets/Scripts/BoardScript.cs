@@ -234,24 +234,4 @@ public class BoardScript : MonoBehaviour
         int c = coords.Item2;
         return r >= 0 && c >= 0 && r < rows && c < cols;
     }
-
-    public void PrintBoard()
-    {
-        Tile cur;
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                cur = board[i,j];
-                if (cur.IsMine)
-                {
-                    Debug.Log("Mine");
-                }
-                else
-                {
-                    Debug.Log(cur.AdjMines);
-                }
-            }
-        }
-    }
 }

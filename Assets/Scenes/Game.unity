@@ -267,6 +267,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49639a908e7ac8d42b18a63891514231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 93563686}
+  SpriteArray:
+  - {fileID: 21300000, guid: 8ed76afcdc948124d806ac0d7c7e1ca5, type: 3}
+  - {fileID: 21300000, guid: beac650ee4360eb4182cda10a3490447, type: 3}
+  - {fileID: 21300000, guid: bd09f25cdaa075948b18d079b6c38bbb, type: 3}
+  - {fileID: 21300000, guid: 4c5ca586ce0f2e849b1328baf34ef4c9, type: 3}
+  - {fileID: 21300000, guid: f4e6928a593184f4fa8a2b2dc765cd36, type: 3}
+  - {fileID: 21300000, guid: 72793022a39b8634e8a018886d3cd97c, type: 3}
+  - {fileID: 21300000, guid: 8f1972cddabd935418c7d442a6699483, type: 3}
+  - {fileID: 21300000, guid: b56ecb18383ba6b43ba5c243c9f7b118, type: 3}
+  - {fileID: 21300000, guid: edb98d8d21601ab4ca2f894661de0a02, type: 3}
+  - {fileID: 21300000, guid: 150545101001fad49a7a223965231718, type: 3}
+  - {fileID: 21300000, guid: 2150d7af4c8dce643b23be2d62647df4, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +542,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3938bd32be571414d8255d466382f451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 1039846962}
+  SpriteArray:
+  - {fileID: 21300000, guid: 8ed76afcdc948124d806ac0d7c7e1ca5, type: 3}
+  - {fileID: 21300000, guid: beac650ee4360eb4182cda10a3490447, type: 3}
+  - {fileID: 21300000, guid: bd09f25cdaa075948b18d079b6c38bbb, type: 3}
+  - {fileID: 21300000, guid: 4c5ca586ce0f2e849b1328baf34ef4c9, type: 3}
+  - {fileID: 21300000, guid: f4e6928a593184f4fa8a2b2dc765cd36, type: 3}
+  - {fileID: 21300000, guid: 72793022a39b8634e8a018886d3cd97c, type: 3}
+  - {fileID: 21300000, guid: 8f1972cddabd935418c7d442a6699483, type: 3}
+  - {fileID: 21300000, guid: b56ecb18383ba6b43ba5c243c9f7b118, type: 3}
+  - {fileID: 21300000, guid: edb98d8d21601ab4ca2f894661de0a02, type: 3}
+  - {fileID: 21300000, guid: 150545101001fad49a7a223965231718, type: 3}
+  - {fileID: 21300000, guid: 2150d7af4c8dce643b23be2d62647df4, type: 3}
 --- !u!1 &1390301883
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +652,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19209a18f17cc2643aa82fe083143a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 1390301885}
+  SpriteArray:
+  - {fileID: 21300000, guid: 8ed76afcdc948124d806ac0d7c7e1ca5, type: 3}
+  - {fileID: 21300000, guid: beac650ee4360eb4182cda10a3490447, type: 3}
+  - {fileID: 21300000, guid: bd09f25cdaa075948b18d079b6c38bbb, type: 3}
+  - {fileID: 21300000, guid: 4c5ca586ce0f2e849b1328baf34ef4c9, type: 3}
+  - {fileID: 21300000, guid: f4e6928a593184f4fa8a2b2dc765cd36, type: 3}
+  - {fileID: 21300000, guid: 72793022a39b8634e8a018886d3cd97c, type: 3}
+  - {fileID: 21300000, guid: 8f1972cddabd935418c7d442a6699483, type: 3}
+  - {fileID: 21300000, guid: b56ecb18383ba6b43ba5c243c9f7b118, type: 3}
+  - {fileID: 21300000, guid: edb98d8d21601ab4ca2f894661de0a02, type: 3}
+  - {fileID: 21300000, guid: 150545101001fad49a7a223965231718, type: 3}
+  - {fileID: 21300000, guid: 2150d7af4c8dce643b23be2d62647df4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
