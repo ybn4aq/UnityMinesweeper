@@ -100,18 +100,18 @@ public class LogicScript : MonoBehaviour
         if (CurDifficulty == Difficulty.Easy)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(1.1f, 7.35f, 0), Quaternion.identity);
-            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-5.8f, 7.25f, 0), Quaternion.identity);
+            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-5.45f, 7.35f, 0), Quaternion.identity);
 
         }
         else if (CurDifficulty == Difficulty.Intermediate)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(5.15f, 9.35f, 0), Quaternion.identity);
-            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-9.75f, 9.25f, 0), Quaternion.identity);
+            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-9.5f, 9.35f, 0), Quaternion.identity);
         }
         else if (CurDifficulty == Difficulty.Expert)
         {
             GameObject instantiatedMineCounter = Instantiate(MineCounterPrefab, new Vector3(12.65f, 8.85f, 0), Quaternion.identity);
-            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-16.3f, 8.75f, 0), Quaternion.identity);
+            GameObject instantiatedTimer = Instantiate(TimerPrefab, new Vector3(-16f, 8.85f, 0), Quaternion.identity);
         }
     }
 }
