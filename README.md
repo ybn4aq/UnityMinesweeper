@@ -16,6 +16,9 @@ it. Therefore, I aimed to make a Minesweeper desktop app that supported this, an
 
 Left Click: Dig a tile
 
-Right Click / Shift + Left Click: Flag/Unflag a Tile
+
+Right Click / Shift + Left Click: Flag/Unflag a Tile 
+
 
 Double Left Click / Space Click: Sweep for undug tiles on an already revealed tile
+
