@@ -42,6 +42,7 @@ public class UIScript : MonoBehaviour
     {
         Difficulties.SetActive(true);
         Restart.SetActive(false);
+        Quit.SetActive(true);
     }
 
     public void OnEasySelected()
