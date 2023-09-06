@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 7601316104669312206}
   - component: {fileID: 9079287510729829936}
   - component: {fileID: 660537502622549492}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Quit
   m_TagString: Quit
   m_Icon: {fileID: 0}
